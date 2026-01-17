@@ -61,7 +61,12 @@ export async function POST(req: Request) {
             Analyze the following product/niche description (and any attached images): "${message}"
 
             Return a valid JSON object (NO markdown formatting, just the raw JSON string) with the following fields:
+<<<<<<< HEAD
             - niche: A SINGLE, specific word categorizing this niche (e.g. "SaaS", "Fashion", "Beverage"). Select the ONE best fit. Do not return multiple options or slash-separated lists.
+=======
+            - product: A short, 3-5 word name or description of the specific product found in the text/image.
+            - niche: A SINGLE Word categorizing this niche (e.g. "SaaS", "Fashion", "Beverage").
+>>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
             - trendScore: A number between 0-100 indicating viral potential.
             - sentiment: "Positive", "Neutral", "Mixed".
             - opportunities: An array of 3 short marketing angles/hooks.

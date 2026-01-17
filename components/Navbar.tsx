@@ -39,12 +39,25 @@ export function Navbar() {
                     ))}
                 </div>
 
+<<<<<<< HEAD
                 {/* Right Actions */}
                 <div className="flex items-center gap-6">
                     <Link href="/login" className="hidden md:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Sign in
                     </Link>
                     <Button variant="default" className="rounded-md px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md active:scale-95 transition-all">
+=======
+                <div className="hidden md:flex items-center gap-8">
+                    <Link href="#how-it-works" className="text-sm text-gray-400 hover:text-white transition-colors">How it Works</Link>
+                    <Link href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">Features</Link>
+                    <Link href="#workflow" className="text-sm text-gray-400 hover:text-white transition-colors">Workflow</Link>
+                    <Link href="/demo" className="text-sm text-gray-400 hover:text-white transition-colors">Demo</Link>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <Link href="/login" className="hidden md:block text-sm text-white hover:text-purple-400 transition-colors">Sign in</Link>
+                    <Button variant="glow" size="sm">
+>>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
                         Get Started
                     </Button>
                     <div className="ml-2">
