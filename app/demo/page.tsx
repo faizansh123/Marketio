@@ -57,15 +57,16 @@ export default function DemoPage() {
                 body: JSON.stringify({ prompt: dummyData.veo3_prompt })
             });
 
-            if (!res.ok) throw new Error("Failed to generate video");
+            if (!res.ok) {
+                const errorData = await res.json();
+                throw new Error(errorData.error || "Failed to generate video");
+            }
 
             const data = await res.json();
-            setVideoUrl(data.videoUrl); // Assuming API returns { videoUrl: "..." }
-        } catch (error) {
+            setVideoUrl(data.videoUrl); 
+        } catch (error: any) {
             console.error(error);
-            // Fallback for demo if API fails or isn't set up
-            // Using a placeholder video or error message would be better in prod
-            alert("Video generation failed (API mock). In production, this connects to Veo3.");
+            alert(`Video generation failed: ${error.message}`);
         } finally {
             setIsGeneratingVideo(false);
         }
