@@ -7,40 +7,167 @@ import { Navbar } from "@/components/Navbar";
 
 // Dummy Data mimicking the N8N payload
 const dummyData = {
-    product_context: {
-        name: "Lumina Glow Serum",
-        category: "Skincare",
-        key_benefits: ["Brightening", "Hydrating", "Anti-aging"],
-        target_customer: "Women 25-40 looking for natural glow"
+    "product_context": {
+        "name": "GlowUp Daily Serum",
+        "category": "Skincare - Anti-aging & Brightening",
+        "key_benefits": [
+            "Reduces fine lines",
+            "Evens skin tone",
+            "Boosts radiance",
+            "Deeply hydrates",
+            "Non-greasy, fast-absorbing"
+        ],
+        "target_customer": "Women aged 25-45, concerned about early signs of aging, dullness, and seeking effective, easy-to-use skincare solutions."
     },
-    top_trends: [
+    "top_trends": [
         {
-            trend_name: "Glass Skin Routine",
-            why_it_works_for_this_product: "The 'Glass Skin' trend focuses on intense hydration and dewy finish, which aligns distinctively with Lumina Glow's key benefit.",
-            evidence_from_dataset: ["Trending #GlassSkin", "High engagement on routine videos"],
-            product_specific_hooks: ["Get Glass Skin in 5 minutes", "The secret to my morning glow", "Stop using matte foundation"],
-            video_structure: {
-                "0_3s": "Close up of dewy skin, tapping cheek.",
-                "3_10s": "Showing product texture, applying serum.",
-                "10_20s": "Montage of before/after or morning routine steps.",
-                "20_30s": "Final look, smiling at camera, CTA to check bio."
+            "trend_name": "The Instant Glow-Up Transformation",
+            "why_it_works_for_this_product": "This trend directly addresses a common pain point (dull, tired skin) and visually demonstrates the immediate, tangible solution (radiant, hydrated skin) provided by GlowUp Daily Serum. The 'before & after' format creates a high-impact, visually compelling narrative that drives desire and perceived efficacy, crucial for conversion.",
+            "evidence_from_dataset": [
+                "Videos showcasing users with tired/dull skin, applying a product, then revealing a noticeable improvement in radiance and texture within seconds/minutes. These videos consistently achieved high views and saves due to the 'wow' factor.",
+                "Content featuring dramatic visual shifts from 'problem' (e.g., uneven skin tone, visible fine lines) to 'solution' (smooth, bright complexion) using fast cuts and trending audio, leading to strong engagement and 'where to buy' comments."
+            ],
+            "product_specific_hooks": [
+                "My skin was dull, tired, and showing every late night... until THIS.",
+                "Watch my skin go from 'meh' to 'WOW' in 30 seconds.",
+                "Tired of dull skin? This is the only serum you need for an instant glow."
+            ],
+            "video_structure": {
+                "0_3s": "Close-up of dull, tired skin (or user looking visibly fatigued/frustrated). Text overlay: 'My biggest skin problem...' or 'Is your skin looking tired?'",
+                "3_10s": "Quick cut to user applying GlowUp Daily Serum. Show satisfying texture, gentle massage into skin. Voiceover: 'I tried everything, but nothing gave me this glow until GlowUp Daily Serum.'",
+                "10_20s": "Dramatic transition to user with visibly brighter, hydrated, and smoother skin (after absorption). Show close-ups of radiant complexion, emphasizing reduced fine lines. Voiceover: 'Look at this glow! Fine lines are softer, my skin feels amazing and looks years younger.'",
+                "20_30s": "User confidently smiling, holding the GlowUp Daily Serum. Clear call to action: 'Get your glow-up now! Link in bio to shop the secret to radiant skin.'"
             },
-            editing_notes: ["Use soft lighting", "Increase exposure slightly", "Lo-fi beat background"],
-            caption_templates: ["My daily glass skin routine ✨ #skincare #glassskin"],
-            hashtag_strategy: {
-                broad: ["skincare", "beauty", "glow"],
-                niche: ["glassskin", "kbeauty", "dewy"],
-                intent: ["skincareroutine", "glowups"]
+            "editing_notes": [
+                "Use fast, impactful cuts between 'before' and 'after' shots. Ensure bright, natural lighting for 'after' segments to highlight radiance.",
+                "Incorporate a trending, upbeat audio track. Utilize clear, concise text overlays to highlight key benefits like 'Instant Radiance' and 'Reduces Fine Lines'."
+            ],
+            "caption_templates": [
+                "Confession: My skin used to look as tired as I felt. 😩 But then GlowUp Daily Serum entered the chat and changed EVERYTHING. Seriously, the glow is real! ✨ #GlowUp #SkincareRoutine #BeforeAndAfter #RadiantSkin #DailySerum",
+                "From dull to dazzling in one step! If you're struggling with tired-looking skin, you NEED to try GlowUp Daily Serum. My secret weapon for a youthful glow! 🤫💖 #AntiAging #SkincareGoals #MustHave #GlowUpDaily"
+            ],
+            "hashtag_strategy": {
+                "broad": [
+                    "#Skincare",
+                    "#Beauty",
+                    "#BeautyHacks"
+                ],
+                "niche": [
+                    "#AntiAgingSerum",
+                    "#BrighteningSerum",
+                    "#GlowUpChallenge"
+                ],
+                "intent": [
+                    "#ShopNow",
+                    "#LinkInBio",
+                    "#SkincareRoutine"
+                ]
+            }
+        },
+        {
+            "trend_name": "Authentic Routine Integration / 'Get Ready With Me' (GRWM)",
+            "why_it_works_for_this_product": "This trend builds trust and relatability by showcasing GlowUp Daily Serum seamlessly integrated into a real-life morning or evening routine. It feels less like an overt ad and more like a genuine recommendation from a peer, emphasizing ease of use and consistent results, which is key for long-term product adoption and conversion.",
+            "evidence_from_dataset": [
+                "Videos where users naturally incorporate skincare products into their daily routines (e.g., GRWM, evening routine), talking through each step and highlighting product benefits. These videos consistently achieved high watch times and positive, engaging comments.",
+                "Content that demonstrates product application within a broader lifestyle context, making the product feel essential and easy to use, leading to higher 'add to cart' rates due to perceived authenticity."
+            ],
+            "product_specific_hooks": [
+                "Come get ready with me and see my secret to glowing skin!",
+                "My 3-step morning routine for skin that actually glows all day.",
+                "This is how I keep my skin looking fresh and hydrated, even on 5 hours of sleep."
+            ],
+            "video_structure": {
+                "0_3s": "User starting their routine (e.g., washing face, sitting at vanity). Hook text overlay: 'My everyday glow secret!'",
+                "3_10s": "User applies toner, then picks up GlowUp Daily Serum. 'Next, my absolute favorite: GlowUp Daily Serum. A few drops are all I need for incredible hydration and brightness.' Show satisfying application.",
+                "10_20s": "User continues with other routine steps (moisturizer, SPF) while subtly highlighting how the serum preps skin. 'It absorbs so fast, leaves no sticky residue, and makes my moisturizer work even better. My skin feels plump and smooth.' Show radiant skin up close.",
+                "20_30s": "User finishes routine, looks confident and radiant. 'And that's it! Ready to take on the day with my GlowUp. You can find this game-changer in my bio!'"
+            },
+            "editing_notes": [
+                "Use natural lighting and smooth transitions between routine steps. Incorporate soft, calming background music.",
+                "Maintain an authentic, conversational voiceover. Ensure subtle product placement that feels organic rather than forced."
+            ],
+            "caption_templates": [
+                "GRWM for a productive day! ✨ My secret weapon for that 'lit-from-within' glow? The GlowUp Daily Serum. It's a game-changer for fine lines and dullness! #GRWM #SkincareRoutine #MorningRoutine #GlowUpDaily #HealthySkin",
+                "My skin has never felt better since I added GlowUp Daily Serum to my daily routine. Hydrated, bright, and ready for anything! What's your go-to? 👇 #DailySkincare #BeautyRoutine #Serum #SkincareSecrets"
+            ],
+            "hashtag_strategy": {
+                "broad": [
+                    "#GRWM",
+                    "#SkincareRoutine",
+                    "#BeautyTips"
+                ],
+                "niche": [
+                    "#MorningSkincare",
+                    "#EveningRoutine",
+                    "#SkincareSecrets"
+                ],
+                "intent": [
+                    "#GetTheLook",
+                    "#MustHaveProduct",
+                    "#LinkInBio"
+                ]
+            }
+        },
+        {
+            "trend_name": "Quick Skincare Hacks / Educational Bites",
+            "why_it_works_for_this_product": "This trend positions GlowUp Daily Serum as an intelligent, effective solution within a broader context of skincare knowledge. It appeals to users looking for quick, actionable advice and smart product choices, building authority and trust. By presenting the serum as a 'hack' or essential step, it elevates its perceived value and necessity for achieving desired skin goals.",
+            "evidence_from_dataset": [
+                "Short, punchy videos offering a 'hack' or 'tip' related to skincare, often featuring a specific product as the solution to a common problem. These videos achieved high shareability and saves due to their informative and actionable nature.",
+                "Content that debunks skincare myths or simplifies complex routines, introducing a product as the 'smart switch' or 'missing step'. These videos generated strong interest and 'learn more' clicks."
+            ],
+            "product_specific_hooks": [
+                "STOP making this skincare mistake! (And what to do instead)",
+                "The one ingredient your anti-aging routine is missing.",
+                "Want brighter, smoother skin? It's simpler than you think."
+            ],
+            "video_structure": {
+                "0_3s": "User presents a common skincare problem or myth (e.g., 'Are you skipping serum?'). Quick, direct question with text overlay.",
+                "3_10s": "User explains *why* it's a problem or debunks the myth. 'Many think moisturizer is enough, but serum targets specific concerns deeper, like fine lines and dullness!'",
+                "10_20s": "Introduce GlowUp Daily Serum as the solution. Show key ingredients or benefits visually (e.g., 'Packed with Vitamin C & Hyaluronic Acid!'). 'That's why GlowUp Daily Serum is a non-negotiable for me – it tackles fine lines AND boosts radiance like nothing else.'",
+                "20_30s": "Quick demo of application, emphasizing ease and visible results. Call to action. 'Make the smart switch for visibly radiant, younger-looking skin. Tap the link to transform your routine!'"
+            },
+            "editing_notes": [
+                "Maintain a fast-paced rhythm with clear, bold text overlays for key points and statistics. Use an energetic, authoritative voiceover.",
+                "Incorporate quick graphics or bullet points to convey information efficiently. Consider before/after flashes if applicable to reinforce the 'solution'."
+            ],
+            "caption_templates": [
+                "Skincare hack alert! 🚨 If you're not using a daily serum, you're missing out on major glow-up potential. GlowUp Daily Serum is my secret for tackling fine lines and boosting radiance! #SkincareHack #BeautyTips #AntiAging #GlowUp #SerumBenefits",
+                "Myth busted: You don't need 10 steps for amazing skin! Just one powerful serum like GlowUp Daily Serum can transform your complexion. ✨ Ready for brighter, smoother skin? #SkincareEducation #BeautySecrets #DailySerum #HealthySkin #SmartSkincare"
+            ],
+            "hashtag_strategy": {
+                "broad": [
+                    "#SkincareTips",
+                    "#BeautyHacks",
+                    "#LearnOnTikTok"
+                ],
+                "niche": [
+                    "#SerumBenefits",
+                    "#AntiAgingTips",
+                    "#VitaminCSkincare"
+                ],
+                "intent": [
+                    "#ShopSkincare",
+                    "#BeautyDeals",
+                    "#TryItNow"
+                ]
             }
         }
     ],
-    creator_recipe_json: {
-        hook: "If you want glass skin, stop skipping this step.",
-        video_style: "Aesthetic Morning Routine (ASMR)",
-        caption: "Transform your skin with just 3 drops. ✨ #skincare #glow #morningroutine",
-        hashtags: ["#skincare", "#glassskin", "#glow"]
+    "creator_recipe_json": {
+        "hook": "My skin was dull, tired, and showing every late night... until THIS.",
+        "video_style": "Fast-paced visual transformation from tired, dull skin to radiant, glowing skin, with satisfying product application shots and clear benefit overlays. Utilize bright, natural lighting for 'after' shots and an upbeat, trending audio track.",
+        "caption": "Confession: My skin used to look as tired as I felt. 😩 But then GlowUp Daily Serum entered the chat and changed EVERYTHING. Seriously, the glow is real! ✨ Tap the link to get your own glow-up! #GlowUp #SkincareRoutine #BeforeAndAfter #RadiantSkin #DailySerum #AntiAging #ShopNow",
+        "hashtags": [
+            "#GlowUp",
+            "#SkincareRoutine",
+            "#BeforeAndAfter",
+            "#RadiantSkin",
+            "#DailySerum",
+            "#AntiAging",
+            "#ShopNow"
+        ]
     },
-    veo3_prompt: "Cinematic close-up heavily stylized shot of a serum bottle glowing with ethereal light in a modern bathroom, water droplets on the bottle, soft morning sunlight streaming through window, 8k resolution, photorealistic, dewy skin texture."
+    "veo3_prompt": "Generate a 30-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
 };
 
 export default function DemoPage() {
