@@ -61,7 +61,7 @@ export async function POST(req: Request) {
             Analyze the following product/niche description (and any attached images): "${message}"
 
             Return a valid JSON object (NO markdown formatting, just the raw JSON string) with the following fields:
-            - niche: A SINGLE Word categorizing this niche (e.g. "SaaS", "Fashion", "Beverage").
+            - niche: A SINGLE, specific word categorizing this niche (e.g. "SaaS", "Fashion", "Beverage"). Select the ONE best fit. Do not return multiple options or slash-separated lists.
             - trendScore: A number between 0-100 indicating viral potential.
             - sentiment: "Positive", "Neutral", "Mixed".
             - opportunities: An array of 3 short marketing angles/hooks.
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
 
             return NextResponse.json({
                 role: "assistant",
-                content: `Niche: ${data.niche}`,
+                content: `# Niche: ${data.niche}`,
                 type: "analysis",
                 data: data
             });

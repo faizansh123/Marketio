@@ -18,11 +18,11 @@ export default function GeneratePage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#0a0a0f] text-white overflow-hidden relative font-sans">
+        <main className="min-h-screen bg-background text-foreground overflow-hidden relative font-sans">
             <Navbar />
             
             {/* Background Effects */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-indigo-600/10 dark:bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
             
             <div className="container mx-auto px-4 pt-20 h-[calc(100vh)] flex flex-col">
                 <AnimatePresence mode="wait">
@@ -36,10 +36,10 @@ export default function GeneratePage() {
                             className="flex-1 flex flex-col items-center justify-center -mt-20"
                         >
                             <div className="w-full max-w-2xl space-y-8 mb-20 text-center">
-                                <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
+                                <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground to-foreground/50 pb-2">
                                     Tell Me About Your Product
                                 </h1>
-                                <p className="text-xl text-gray-400">
+                                <p className="text-xl text-muted-foreground">
                                     Describe your product or upload a document to get started.
                                 </p>
                                 
@@ -54,7 +54,7 @@ export default function GeneratePage() {
                                     <button 
                                         key={suggestion} 
                                         onClick={() => handleInitialGenerate(suggestion, [])}
-                                        className="p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer text-sm text-gray-400 text-center"
+                                        className="p-4 rounded-xl border border-border bg-card hover:bg-muted transition-all cursor-pointer text-sm text-muted-foreground text-center shadow-sm"
                                     >
                                         "{suggestion}"
                                     </button>

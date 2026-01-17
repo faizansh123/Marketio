@@ -7,6 +7,7 @@ import { Sparkles, Bot, User, TrendingUp, BarChart3, AlertCircle, CheckCircle2, 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface Message {
     role: "user" | "assistant";
@@ -22,13 +23,17 @@ interface ChatInterfaceProps {
 }
 
 export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps) {
+    const router = useRouter();
     const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const hasInitialized = useRef(false);
 
     // Initial load effect
     useEffect(() => {
-        if (initialInput || initialFiles.length > 0) {
+        if (!hasInitialized.current && (initialInput || initialFiles.length > 0)) {
+            hasInitialized.current = true;
+            
             // Add user's initial message
             const userMsg: Message = {
                 role: "user",
@@ -40,7 +45,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
             // Trigger AI response (mock)
             generateResponse(userMsg, initialFiles);
         }
-    }, []);
+    }, [initialInput, initialFiles]);
 
     // Auto-scroll to bottom
     useEffect(() => {
@@ -157,7 +162,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                         {/* Avatar */}
                         <div className={cn(
                             "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
-                            msg.role === "assistant" ? "bg-indigo-500/20 text-indigo-400" : "bg-white/10 text-gray-400"
+                            msg.role === "assistant" ? "bg-indigo-500/10 text-indigo-500" : "bg-muted text-muted-foreground"
                         )}>
                             {msg.role === "assistant" ? <Sparkles size={16} /> : <User size={16} />}
                         </div>
@@ -165,7 +170,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                         {/* Content */}
                         <div className={cn(
                             "rounded-2xl p-4 text-sm leading-relaxed",
-                            msg.role === "user" ? "bg-indigo-600 text-white" : "bg-white/5 border border-white/10 text-gray-200 w-full"
+                            msg.role === "user" ? "bg-indigo-600 text-white" : "bg-card border border-border text-foreground w-full shadow-sm"
                         )}>
                             {/* File Attachments */}
                             {msg.files && msg.files.length > 0 && (
@@ -173,7 +178,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                     {msg.files.map((file, i) => (
                                         <div key={i} className="relative group">
                                             {file.type.startsWith('image/') ? (
-                                                <div className="w-20 h-20 rounded-lg overflow-hidden border border-white/20">
+                                                <div className="w-20 h-20 rounded-lg overflow-hidden border border-border">
                                                     <img 
                                                         src={URL.createObjectURL(file)} 
                                                         alt={file.name}
@@ -181,7 +186,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="flex items-center gap-2 bg-black/20 px-3 py-2 rounded-lg border border-white/10">
+                                                <div className="flex items-center gap-2 bg-muted px-3 py-2 rounded-lg border border-border text-muted-foreground">
                                                     <FileIcon size={14} />
                                                     <span className="text-xs max-w-[100px] truncate">{file.name}</span>
                                                 </div>
@@ -191,7 +196,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                 </div>
                             )}
                             {/* Markdown Content */}
-                            <div className="text-sm leading-relaxed text-gray-200">
+                            <div className={cn("text-sm leading-relaxed", msg.role === "user" ? "text-white" : "text-foreground")}>
                                 <ReactMarkdown 
                                     remarkPlugins={[remarkGfm]}
                                     components={{
@@ -199,23 +204,23 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                         ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
                                         li: ({node, ...props}) => <li className="mb-1" {...props} />,
                                         p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                                        strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
-                                        h1: ({node, ...props}) => <h1 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
-                                        h2: ({node, ...props}) => <h2 className="text-lg font-bold mb-2 mt-3 text-white" {...props} />,
-                                        h3: ({node, ...props}) => <h3 className="text-md font-bold mb-1 mt-2 text-white" {...props} />,
-                                        blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-white/5 rounded-r" {...props} />,
+                                        strong: ({node, ...props}) => <strong className={cn("font-bold", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        h1: ({node, ...props}) => <h1 className={cn("text-3xl font-bold mb-3 mt-4", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        h2: ({node, ...props}) => <h2 className={cn("text-lg font-bold mb-2 mt-3", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        h3: ({node, ...props}) => <h3 className={cn("text-md font-bold mb-1 mt-2", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-muted/50 rounded-r" {...props} />,
                                         code: ({node, ...props}) => {
                                             const { className, children } = props;
                                             const match = /language-(\w+)/.exec(className || '');
                                             const isInline = !match && !String(children).includes('\n');
                                             return isInline ? (
-                                                <code className="bg-black/30 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-xs" {...props} />
+                                                <code className="bg-black/10 dark:bg-black/30 px-1.5 py-0.5 rounded text-indigo-600 dark:text-indigo-300 font-mono text-xs" {...props} />
                                             ) : (
-                                                <code className="block bg-black/30 p-2 rounded-lg overflow-x-auto mb-2 text-xs font-mono" {...props} />
+                                                <code className="block bg-black/10 dark:bg-black/30 p-2 rounded-lg overflow-x-auto mb-2 text-xs font-mono" {...props} />
                                             );
                                         },
                                         pre: ({node, ...props}) => <pre className="bg-transparent p-0 m-0" {...props} />,
-                                        a: ({node, ...props}) => <a className="text-indigo-400 hover:text-indigo-300 underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                                        a: ({node, ...props}) => <a className="text-indigo-500 hover:text-indigo-400 underline" target="_blank" rel="noopener noreferrer" {...props} />,
                                     }}
                                 >
                                     {msg.content}
@@ -225,34 +230,34 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                             {/* Render Analysis Widget if type is analysis */}
                             {msg.type === "analysis" && msg.data && (
                                 <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    <div className="bg-black/20 p-3 rounded-xl border border-white/5">
-                                        <div className="flex items-center gap-2 text-indigo-400 mb-1">
+                                    <div className="bg-muted/50 p-3 rounded-xl border border-border">
+                                        <div className="flex items-center gap-2 text-indigo-500 mb-1">
                                             <TrendingUp size={16} />
                                             <span className="font-semibold text-xs uppercase tracking-wider">Trend Score</span>
                                         </div>
-                                        <div className="text-2xl font-bold text-white">{msg.data.trendScore}/100</div>
-                                        <div className="w-full bg-gray-700 h-1 mt-2 rounded-full overflow-hidden">
+                                        <div className="text-2xl font-bold text-foreground">{msg.data.trendScore}/100</div>
+                                        <div className="w-full bg-secondary h-1 mt-2 rounded-full overflow-hidden">
                                             <div className="bg-indigo-500 h-full" style={{ width: `${msg.data.trendScore}%` }} />
                                         </div>
                                     </div>
 
-                                    <div className="bg-black/20 p-3 rounded-xl border border-white/5">
-                                        <div className="flex items-center gap-2 text-purple-400 mb-1">
+                                    <div className="bg-muted/50 p-3 rounded-xl border border-border">
+                                        <div className="flex items-center gap-2 text-purple-500 mb-1">
                                             <BarChart3 size={16} />
                                             <span className="font-semibold text-xs uppercase tracking-wider">Competition</span>
                                         </div>
-                                        <div className="text-2xl font-bold text-white">{msg.data.competitorSaturation}</div>
-                                        <div className="text-xs text-gray-400 mt-1">Market is active but penetrable.</div>
+                                        <div className="text-2xl font-bold text-foreground">{msg.data.competitorSaturation}</div>
+                                        <div className="text-xs text-muted-foreground mt-1">Market is active but penetrable.</div>
                                     </div>
 
-                                    <div className="col-span-1 md:col-span-2 bg-black/20 p-3 rounded-xl border border-white/5">
-                                         <div className="flex items-center gap-2 text-green-400 mb-2">
+                                    <div className="col-span-1 md:col-span-2 bg-muted/50 p-3 rounded-xl border border-border">
+                                         <div className="flex items-center gap-2 text-green-500 mb-2">
                                             <CheckCircle2 size={16} />
                                             <span className="font-semibold text-xs uppercase tracking-wider">Key Hooks</span>
                                         </div>
                                         <ul className="space-y-2">
                                             {msg.data.opportunities.map((opp: string, i: number) => (
-                                                <li key={i} className="flex items-center gap-2 text-xs text-gray-300">
+                                                <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-green-500/50" />
                                                     {opp}
                                                 </li>
@@ -271,20 +276,20 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                         animate={{ opacity: 1 }}
                         className="flex gap-4 mr-auto max-w-4xl"
                     >
-                         <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+                         <div className="w-8 h-8 rounded-full bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0">
                             <Sparkles size={16} />
                         </div>
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex gap-1 items-center">
-                            <span className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                            <span className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                            <span className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                        <div className="bg-card border border-border rounded-2xl p-4 flex gap-1 items-center shadow-sm">
+                            <span className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                            <span className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                            <span className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                         </div>
                     </motion.div>
                 )}
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-[#0a0a0f] border-t border-white/10 relative z-20">
+            <div className="p-4 bg-background border-t border-border relative z-20">
                <GeneratorInput onGenerate={handleNewMessage} placeholder="Ask follow-up questions..." />
             </div>
 
@@ -296,7 +301,10 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     className="absolute bottom-24 right-4 z-30"
                 >
-                    <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-5 rounded-full shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 border border-white/10 backdrop-blur-md">
+                    <button 
+                        onClick={() => router.push('/analysis')}
+                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-5 rounded-full shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 border border-white/10 backdrop-blur-md"
+                    >
                         Start Analyzing
                         <ArrowRight size={16} />
                     </button>

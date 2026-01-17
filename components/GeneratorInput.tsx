@@ -55,7 +55,7 @@ export function GeneratorInput({ onGenerate, className, placeholder }: Generator
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="relative bg-[#1e1e2e] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+                className="relative bg-card border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col"
             >
                 {/* File Previews */}
                 <AnimatePresence>
@@ -67,13 +67,13 @@ export function GeneratorInput({ onGenerate, className, placeholder }: Generator
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.8 }}
-                                    className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-gray-300"
+                                    className="flex items-center gap-2 bg-muted border border-border rounded-lg px-3 py-2 text-xs text-muted-foreground"
                                 >
-                                    <FileIcon className="w-3 h-3 text-indigo-400" />
+                                    <FileIcon className="w-3 h-3 text-indigo-500" />
                                     <span className="max-w-[150px] truncate">{file.name}</span>
                                     <button 
                                         onClick={() => removeFile(i)}
-                                        className="hover:text-white hover:bg-white/10 rounded-full p-0.5 transition-colors"
+                                        className="hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10 rounded-full p-0.5 transition-colors"
                                     >
                                         <X className="w-3 h-3" />
                                     </button>
@@ -94,7 +94,7 @@ export function GeneratorInput({ onGenerate, className, placeholder }: Generator
                     />
                     <button 
                         onClick={() => fileInputRef.current?.click()}
-                        className="p-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-colors shrink-0"
+                        className="p-3 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors shrink-0"
                         title="Attach files"
                     >
                         <Paperclip className="w-5 h-5" />
@@ -106,7 +106,7 @@ export function GeneratorInput({ onGenerate, className, placeholder }: Generator
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder={placeholder || "Describe your niche or product..."}
-                        className="flex-1 bg-transparent border-0 focus:ring-0 focus:outline-none text-white placeholder:text-gray-500 resize-none py-3 max-h-[200px] overflow-y-auto"
+                        className="flex-1 bg-transparent border-0 focus:ring-0 focus:outline-none text-foreground placeholder:text-muted-foreground resize-none py-3 max-h-[200px] overflow-y-auto"
                         rows={1}
                         autoFocus
                         onKeyDown={(e) => {
@@ -125,7 +125,7 @@ export function GeneratorInput({ onGenerate, className, placeholder }: Generator
                             "p-2 rounded-xl transition-all duration-200 shrink-0",
                             inputValue.trim() || files.length > 0
                                 ? "bg-indigo-500 text-white hover:bg-indigo-600 shadow-lg shadow-indigo-500/25" 
-                                : "bg-white/5 text-gray-500 cursor-not-allowed"
+                                : "bg-muted text-muted-foreground cursor-not-allowed"
                         )}
                     >
                         <ArrowUp className="w-5 h-5" />

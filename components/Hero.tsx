@@ -1,123 +1,139 @@
 "use client";
 
 import { Button } from "./ui/button";
-import Link from "next/link";
-import { ArrowRight, Play, TrendingUp, Video, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { Sparkles, Video } from "lucide-react";
 
 export function Hero() {
+    const router = useRouter();
+    const { theme } = useTheme();
+
     return (
-        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-            {/* Background gradients */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-indigo-600/20 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-600/10 rounded-full blur-[100px] -z-10" />
+        <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-start pt-20 md:pt-32 overflow-hidden bg-[#f8f9fa]">
+            
+            {/* Grid Background Pattern (Subtle) */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-[0.3]" />
 
-            <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
+            {/* Content Container */}
+            <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center">
+                
+                {/* Main Headline */}
+                <h1 className="flex flex-col gap-2 font-[family-name:var(--font-poppins)] text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-[#0f172a] leading-[1.1]">
+                    <span>Stop struggling with content.</span>
+                    <span>Start dominating your niche.</span>
+                </h1>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-indigo-300 backdrop-blur-sm"
+                {/* Subheadline */}
+                <p className="mt-8 text-sm md:text-base font-medium text-muted-foreground max-w-lg mx-auto">
+                    Your all-in-one AI agent that discovers trends, writes scripts, and creates viral short-form videos — in minutes.
+                </p>
+
+                {/* CTA Button */}
+                <div className="mt-8 mb-20">
+                    <Button 
+                        size="lg" 
+                        className="rounded-md px-10 py-7 text-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2"
+                        onClick={() => router.push('/generate')}
                     >
-                        <span className="flex h-2 w-2 rounded-full bg-indigo-500 animate-pulse"></span>
-                        Now supporting TikTok, Reels, & Shorts
-                    </motion.div>
+                        <Sparkles className="h-5 w-5" />
+                        Start Generating
+                    </Button>
+                </div>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50"
-                    >
-                        Turn Trends into <br />
-                        <span className="text-indigo-400">Viral Revenue</span> Automatically
-                    </motion.h1>
+            </div>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-xl text-gray-400 max-w-2xl mx-auto"
-                    >
-                        An AI agent that monitors social trends, strategizes content for your niche, and generates high-performing short-form videos. No editing required.
-                    </motion.p>
+            {/* Rising Graph Visualization (SVG) */}
+            <div className="absolute bottom-0 left-0 right-0 w-full h-[40vh] md:h-[50vh] z-0 pointer-events-none">
+                <svg className="w-full h-full" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                     {/* Dashed Vertical Lines (Weeks) */}
+                    <line x1="200" y1="0" x2="200" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
+                    <text x="200" y="390" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 2</text>
+                    
+                    <line x1="500" y1="0" x2="500" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
+                    <text x="500" y="380" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 4</text>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="flex flex-col sm:flex-row items-center gap-4"
-                    >
-                        <Link href="/generate">
-                            <Button variant="glow" size="lg" className="h-14 px-8 text-lg">
-                                <Sparkles className="mr-2 h-5 w-5" />
-                                Start Generating
-                            </Button>
-                        </Link>
-                        <Button variant="outline" size="lg" className="h-14 px-8 text-lg border-white/10 hover:bg-white/5 hover:text-white">
-                            <Play className="mr-2 h-5 w-5 fill-current" />
-                            Watch Demo
-                        </Button>
-                    </motion.div>
+                    <line x1="800" y1="0" x2="800" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
+                    <text x="800" y="380" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 6</text>
 
-                    {/* Floating Cards (Mock UI) */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="relative mt-16 w-full max-w-5xl mx-auto"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-20 pointer-events-none" />
+                    <line x1="1100" y1="0" x2="1100" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
+                    <text x="1100" y="380" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 8</text>
 
-                        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl">
-                            {/* Card 1: Trend Analysis */}
-                            <div className="bg-black/40 p-4 rounded-xl border border-white/5 space-y-3">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="p-2 bg-pink-500/20 rounded-lg text-pink-400"><TrendingUp size={20} /></div>
-                                    <div className="text-sm font-medium text-gray-300">Trend Detected</div>
-                                </div>
-                                <div className="text-xs text-gray-500">"UGC Selfie Style" is trending in Skincare. (+420% Lift)</div>
-                                <div className="h-1 w-full bg-gray-700 rounded-full overflow-hidden">
-                                    <div className="h-full bg-pink-500 w-[85%]"></div>
-                                </div>
-                            </div>
+                    {/* Gradient Definition */}
+                    <defs>
+                        <linearGradient id="graphGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#818cf8" stopOpacity="0.2" />
+                            <stop offset="100%" stopColor="#818cf8" stopOpacity="0.0" />
+                        </linearGradient>
 
-                            {/* Card 2: Strategy */}
-                            <div className="bg-black/40 p-4 rounded-xl border border-white/5 space-y-3 md:-mt-8 md:mb-8 border-indigo-500/30 shadow-[0_0_30px_rgba(99,102,241,0.15)]">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400"><Sparkles size={20} /></div>
-                                    <div className="text-sm font-medium text-gray-300">Generating Strategy</div>
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center justify-between text-xs text-gray-400">
-                                        <span>Hook</span>
-                                        <span className="text-green-400">98/100</span>
-                                    </div>
-                                    <div className="p-2 bg-white/5 rounded text-xs text-gray-300">
-                                        "Stop scrolling if you have [Pain Point]..."
-                                    </div>
-                                </div>
-                            </div>
+                    </defs>
 
-                            {/* Card 3: Video Output */}
-                            <div className="bg-black/40 p-4 rounded-xl border border-white/5 space-y-3">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="p-2 bg-purple-500/20 rounded-lg text-purple-400"><Video size={20} /></div>
-                                    <div className="text-sm font-medium text-gray-300">Video Ready</div>
-                                </div>
-                                <div className="aspect-[9/16] bg-gradient-to-br from-gray-800 to-black rounded-lg relative overflow-hidden flex items-center justify-center group cursor-pointer">
-                                    <Play className="text-white opacity-50 group-hover:opacity-100 transition-opacity" />
-                                    <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                                        <div className="w-16 h-2 bg-gray-600/50 rounded-full mx-auto"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
+
+
+                    {/* The Graph Curve (Bezier) */}
+                    <path 
+                        d="M0,380 C360,370 540,360 720,290 C950,180 1150,100 1440,30 L1440,400 L0,400 Z" 
+                        fill="url(#graphGradient)" 
+                    />
+                    <path 
+                        d="M0,380 C360,370 540,360 720,290 C950,180 1150,100 1440,30" 
+                        fill="none" 
+                        stroke="#4f46e5" 
+                        strokeWidth="3" 
+                        strokeLinecap="round"
+                    />
+
+                    {/* Blue Dot (Scaling Phase) - Week 8 */}
+                    <circle cx="950" cy="188" r="7" fill="#3b82f6" stroke="white" strokeWidth="4" />
+
+                </svg>
+            </div>
+            
+            {/* "The Old Way" Floating Widget */}
+            <div className="absolute bottom-[18%] left-4 md:left-[6%] z-20 flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
+                <p className="text-sm font-medium text-muted-foreground max-w-[220px] leading-tight">
+                    The old way to spot trends, write scripts, and edit videos:
+                </p>
+                <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-black/5 p-2 rounded-full shadow-lg w-fit">
+                    
+                    {/* TikTok (Research) */}
+                    <div className="w-8 h-8 flex items-center justify-center bg-black rounded-full shadow-sm overflow-hidden p-1.5">
+                         <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok" className="w-full h-full object-contain invert" />
+                    </div>
+
+                    {/* Google Sheets (Planning) */}
+                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg" alt="Sheets" className="w-4 h-5" />
+                    </div>
+
+                     {/* ChatGPT (Scripting) */}
+                     <div className="w-8 h-8 flex items-center justify-center bg-[#74aa9c] rounded-full shadow-sm border border-emerald-100">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" className="w-5 h-5" />
+                    </div>
+
+                    {/* Notion (Organization) */}
+                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" className="w-5 h-5" />
+                    </div>
+
+                    {/* CapCut (Editing) */}
+                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm p-1.5 overflow-hidden">
+                         <img src="/assets/capcut-logo.jpg" alt="CapCut" className="w-full h-full object-contain scale-110" />
+                    </div>
+
+                    {/* Reddit (Research) */}
+                     <div className="w-8 h-8 flex items-center justify-center bg-[#FF4500] rounded-full shadow-sm p-1.5">
+                        <img src="/assets/reddit.svg" alt="Reddit" className="w-full h-full object-contain" />
+                    </div>
+
+                    {/* +12 Badge */}
+                    <div className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full shadow-sm border border-gray-200">
+                        <span className="text-xs font-bold text-gray-500">+12</span>
+                    </div>
+
                 </div>
             </div>
+
         </section>
     );
 }
