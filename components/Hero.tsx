@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Sparkles, Video } from "lucide-react";
+import { Sparkles, Video, Play } from "lucide-react";
 
 export function Hero() {
     const router = useRouter();
+    const [isDemoOpen, setIsDemoOpen] = useState(false);
     const { theme } = useTheme();
 
     return (
@@ -29,19 +31,52 @@ export function Hero() {
                     Your all-in-one AI agent that discovers trends, writes scripts, and creates viral short-form videos — in minutes.
                 </p>
 
-                {/* CTA Button */}
-                <div className="mt-8 mb-20">
+                {/* CTA Buttons */}
+                <div className="mt-8 mb-20 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Button 
                         size="lg" 
-                        className="rounded-md px-10 py-7 text-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2"
+                        className="rounded-full px-8 py-6 text-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2"
                         onClick={() => router.push('/generate')}
                     >
                         <Sparkles className="h-5 w-5" />
                         Start Generating
                     </Button>
+
+                     <Button 
+                        variant="outline"
+                        size="lg" 
+                        className="rounded-full px-8 py-6 text-lg border-2 border-indigo-100 hover:bg-indigo-50 text-indigo-900 font-semibold transition-all duration-300 gap-2"
+                        onClick={() => setIsDemoOpen(true)}
+                    >
+                        <Play className="h-5 w-5 fill-indigo-900" />
+                        Watch Demo
+                    </Button>
                 </div>
 
             </div>
+
+            {/* Video Modal */}
+            {isDemoOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={() => setIsDemoOpen(false)}>
+                    <div className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10" onClick={e => e.stopPropagation()}>
+                        <button 
+                            onClick={() => setIsDemoOpen(false)}
+                            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-colors"
+                        >
+                            ×
+                        </button>
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                            title="Demo Video" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen
+                        />
+                    </div>
+                </div>
+            )}
 
             {/* Rising Graph Visualization (SVG) */}
             <div className="absolute bottom-0 left-0 right-0 w-full h-[40vh] md:h-[50vh] z-0 pointer-events-none">

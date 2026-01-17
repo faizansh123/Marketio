@@ -27,11 +27,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
     const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
-<<<<<<< HEAD
     const hasInitialized = useRef(false);
-=======
-    const router = useRouter();
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
 
     // Initial load effect
     useEffect(() => {
@@ -190,15 +186,9 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                     {msg.files.map((file, i) => (
                                         <div key={i} className="relative group">
                                             {file.type.startsWith('image/') ? (
-<<<<<<< HEAD
-                                                <div className="w-20 h-20 rounded-lg overflow-hidden border border-border">
-                                                    <img 
-                                                        src={URL.createObjectURL(file)} 
-=======
                                                 <div className="w-20 h-20 rounded-lg overflow-hidden border border-white/20">
                                                     <img
                                                         src={URL.createObjectURL(file)}
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
                                                         alt={file.name}
                                                         className="w-full h-full object-cover"
                                                     />
@@ -214,23 +204,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                 </div>
                             )}
                             {/* Markdown Content */}
-<<<<<<< HEAD
                             <div className={cn("text-sm leading-relaxed", msg.role === "user" ? "text-white" : "text-foreground")}>
-                                <ReactMarkdown 
-                                    remarkPlugins={[remarkGfm]}
-                                    components={{
-                                        ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
-                                        ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
-                                        li: ({node, ...props}) => <li className="mb-1" {...props} />,
-                                        p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                                        strong: ({node, ...props}) => <strong className={cn("font-bold", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
-                                        h1: ({node, ...props}) => <h1 className={cn("text-3xl font-bold mb-3 mt-4", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
-                                        h2: ({node, ...props}) => <h2 className={cn("text-lg font-bold mb-2 mt-3", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
-                                        h3: ({node, ...props}) => <h3 className={cn("text-md font-bold mb-1 mt-2", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
-                                        blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-muted/50 rounded-r" {...props} />,
-                                        code: ({node, ...props}) => {
-=======
-                            <div className="text-sm leading-relaxed text-gray-200">
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
                                     components={{
@@ -238,29 +212,23 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                         ol: ({ node, ...props }) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
                                         li: ({ node, ...props }) => <li className="mb-1" {...props} />,
                                         p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
-                                        strong: ({ node, ...props }) => <strong className="font-bold text-white" {...props} />,
-                                        h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
-                                        h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-3 text-white" {...props} />,
-                                        h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-1 mt-2 text-white" {...props} />,
-                                        blockquote: ({ node, ...props }) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-white/5 rounded-r" {...props} />,
+                                        strong: ({ node, ...props }) => <strong className={cn("font-bold", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        h1: ({ node, ...props }) => <h1 className={cn("text-3xl font-bold mb-3 mt-4", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        h2: ({ node, ...props }) => <h2 className={cn("text-lg font-bold mb-2 mt-3", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        h3: ({ node, ...props }) => <h3 className={cn("text-md font-bold mb-1 mt-2", msg.role === "user" ? "text-white" : "text-foreground")} {...props} />,
+                                        blockquote: ({ node, ...props }) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-muted/50 rounded-r" {...props} />,
                                         code: ({ node, ...props }) => {
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
                                             const { className, children } = props;
                                             const match = /language-(\w+)/.exec(className || '');
                                             const isInline = !match && !String(children).includes('\n');
                                             return isInline ? (
-                                                <code className="bg-black/10 dark:bg-black/30 px-1.5 py-0.5 rounded text-indigo-600 dark:text-indigo-300 font-mono text-xs" {...props} />
+                                                <code className="bg-black/10 dark:bg-black/30 px-1.5 py-0.5 rounded text-indigo-600 dark:text-indigo-400 font-mono text-xs" {...props} />
                                             ) : (
                                                 <code className="block bg-black/10 dark:bg-black/30 p-2 rounded-lg overflow-x-auto mb-2 text-xs font-mono" {...props} />
                                             );
                                         },
-<<<<<<< HEAD
-                                        pre: ({node, ...props}) => <pre className="bg-transparent p-0 m-0" {...props} />,
-                                        a: ({node, ...props}) => <a className="text-indigo-500 hover:text-indigo-400 underline" target="_blank" rel="noopener noreferrer" {...props} />,
-=======
                                         pre: ({ node, ...props }) => <pre className="bg-transparent p-0 m-0" {...props} />,
                                         a: ({ node, ...props }) => <a className="text-indigo-400 hover:text-indigo-300 underline" target="_blank" rel="noopener noreferrer" {...props} />,
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
                                     }}
                                 >
                                     {msg.content}
@@ -290,13 +258,8 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                         <div className="text-xs text-muted-foreground mt-1">Market is active but penetrable.</div>
                                     </div>
 
-<<<<<<< HEAD
                                     <div className="col-span-1 md:col-span-2 bg-muted/50 p-3 rounded-xl border border-border">
-                                         <div className="flex items-center gap-2 text-green-500 mb-2">
-=======
-                                    <div className="col-span-1 md:col-span-2 bg-black/20 p-3 rounded-xl border border-white/5">
-                                        <div className="flex items-center gap-2 text-green-400 mb-2">
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
+                                        <div className="flex items-center gap-2 text-green-500 mb-2">
                                             <CheckCircle2 size={16} />
                                             <span className="font-semibold text-xs uppercase tracking-wider">Key Hooks</span>
                                         </div>
@@ -321,11 +284,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                         animate={{ opacity: 1 }}
                         className="flex gap-4 mr-auto max-w-4xl"
                     >
-<<<<<<< HEAD
-                         <div className="w-8 h-8 rounded-full bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0">
-=======
                         <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
                             <Sparkles size={16} />
                         </div>
                         <div className="bg-card border border-border rounded-2xl p-4 flex gap-1 items-center shadow-sm">
@@ -338,13 +297,8 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
             </div>
 
             {/* Input Area */}
-<<<<<<< HEAD
             <div className="p-4 bg-background border-t border-border relative z-20">
-               <GeneratorInput onGenerate={handleNewMessage} placeholder="Ask follow-up questions..." />
-=======
-            <div className="p-4 bg-[#0a0a0f] border-t border-white/10 relative z-20">
                 <GeneratorInput onGenerate={handleNewMessage} placeholder="Ask follow-up questions..." />
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
             </div>
 
             {/* Floating Action Button */}
@@ -355,13 +309,8 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     className="absolute bottom-24 right-4 z-30"
                 >
-<<<<<<< HEAD
-                    <button 
-                        onClick={() => router.push('/analysis')}
-=======
                     <button
                         onClick={handleStartAnalysis}
->>>>>>> d6e18fac694b2294c879d2fd8a8937f9a86a130e
                         className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-5 rounded-full shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 border border-white/10 backdrop-blur-md"
                     >
                         Start Analyzing
