@@ -61,6 +61,7 @@ export async function POST(req: Request) {
             Analyze the following product/niche description (and any attached images): "${message}"
 
             Return a valid JSON object (NO markdown formatting, just the raw JSON string) with the following fields:
+            - product: A short, 3-5 word name or description of the specific product found in the text/image.
             - niche: A SINGLE Word categorizing this niche (e.g. "SaaS", "Fashion", "Beverage").
             - trendScore: A number between 0-100 indicating viral potential.
             - sentiment: "Positive", "Neutral", "Mixed".

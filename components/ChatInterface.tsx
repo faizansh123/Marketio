@@ -7,6 +7,7 @@ import { Sparkles, Bot, User, TrendingUp, BarChart3, AlertCircle, CheckCircle2, 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface Message {
     role: "user" | "assistant";
@@ -25,6 +26,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
     const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     // Initial load effect
     useEffect(() => {
@@ -71,7 +73,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
 
     const generateResponse = async (userMsg: Message, files: File[] = []) => {
         setIsTyping(true);
-        
+
         // Determine type of request
         const hasAnalysis = messages.some(m => m.type === "analysis");
         const type = hasAnalysis ? "chat" : "analysis";
@@ -107,18 +109,18 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
             }
 
             const data = await res.json();
-            
+
             // The API returns the full message object
             const assistantMsg: Message = data;
-            
+
             setMessages(prev => [...prev, assistantMsg]);
 
         } catch (error) {
             console.error("Chat error:", error);
-            
+
             const errorMessage = error instanceof Error ? error.message : "Unknown error";
             let friendlyMessage = "Sorry, I encountered an error connecting to the AI. Please try again.";
-            
+
             if (errorMessage.includes("Quota") || errorMessage.includes("429")) {
                 friendlyMessage = "Usage limit exceeded. Please wait a moment before trying again.";
             }
@@ -140,12 +142,20 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
         generateResponse(newMsg, files);
     };
 
+    const handleStartAnalysis = () => {
+        const analysisMsg = messages.find(m => m.type === "analysis");
+        if (analysisMsg && analysisMsg.data && analysisMsg.data.niche) {
+            const product = analysisMsg.data.product || "";
+            router.push(`/analysis-loading?niche=${encodeURIComponent(analysisMsg.data.niche)}&product=${encodeURIComponent(product)}`);
+        }
+    };
+
     return (
         <div className="flex flex-col h-[calc(100vh-80px)] w-full max-w-5xl mx-auto relative">
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-6" ref={scrollRef}>
                 {messages.map((msg, idx) => (
-                    <motion.div 
+                    <motion.div
                         key={idx}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -174,8 +184,8 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                         <div key={i} className="relative group">
                                             {file.type.startsWith('image/') ? (
                                                 <div className="w-20 h-20 rounded-lg overflow-hidden border border-white/20">
-                                                    <img 
-                                                        src={URL.createObjectURL(file)} 
+                                                    <img
+                                                        src={URL.createObjectURL(file)}
                                                         alt={file.name}
                                                         className="w-full h-full object-cover"
                                                     />
@@ -192,19 +202,19 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                             )}
                             {/* Markdown Content */}
                             <div className="text-sm leading-relaxed text-gray-200">
-                                <ReactMarkdown 
+                                <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
                                     components={{
-                                        ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
-                                        ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
-                                        li: ({node, ...props}) => <li className="mb-1" {...props} />,
-                                        p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                                        strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
-                                        h1: ({node, ...props}) => <h1 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
-                                        h2: ({node, ...props}) => <h2 className="text-lg font-bold mb-2 mt-3 text-white" {...props} />,
-                                        h3: ({node, ...props}) => <h3 className="text-md font-bold mb-1 mt-2 text-white" {...props} />,
-                                        blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-white/5 rounded-r" {...props} />,
-                                        code: ({node, ...props}) => {
+                                        ul: ({ node, ...props }) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
+                                        ol: ({ node, ...props }) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
+                                        li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                                        p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                                        strong: ({ node, ...props }) => <strong className="font-bold text-white" {...props} />,
+                                        h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
+                                        h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-3 text-white" {...props} />,
+                                        h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-1 mt-2 text-white" {...props} />,
+                                        blockquote: ({ node, ...props }) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-white/5 rounded-r" {...props} />,
+                                        code: ({ node, ...props }) => {
                                             const { className, children } = props;
                                             const match = /language-(\w+)/.exec(className || '');
                                             const isInline = !match && !String(children).includes('\n');
@@ -214,8 +224,8 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                                 <code className="block bg-black/30 p-2 rounded-lg overflow-x-auto mb-2 text-xs font-mono" {...props} />
                                             );
                                         },
-                                        pre: ({node, ...props}) => <pre className="bg-transparent p-0 m-0" {...props} />,
-                                        a: ({node, ...props}) => <a className="text-indigo-400 hover:text-indigo-300 underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                                        pre: ({ node, ...props }) => <pre className="bg-transparent p-0 m-0" {...props} />,
+                                        a: ({ node, ...props }) => <a className="text-indigo-400 hover:text-indigo-300 underline" target="_blank" rel="noopener noreferrer" {...props} />,
                                     }}
                                 >
                                     {msg.content}
@@ -246,7 +256,7 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                     </div>
 
                                     <div className="col-span-1 md:col-span-2 bg-black/20 p-3 rounded-xl border border-white/5">
-                                         <div className="flex items-center gap-2 text-green-400 mb-2">
+                                        <div className="flex items-center gap-2 text-green-400 mb-2">
                                             <CheckCircle2 size={16} />
                                             <span className="font-semibold text-xs uppercase tracking-wider">Key Hooks</span>
                                         </div>
@@ -266,12 +276,12 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                 ))}
 
                 {isTyping && (
-                    <motion.div 
-                        initial={{ opacity: 0 }} 
+                    <motion.div
+                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="flex gap-4 mr-auto max-w-4xl"
                     >
-                         <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
                             <Sparkles size={16} />
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex gap-1 items-center">
@@ -285,23 +295,26 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
 
             {/* Input Area */}
             <div className="p-4 bg-[#0a0a0f] border-t border-white/10 relative z-20">
-               <GeneratorInput onGenerate={handleNewMessage} placeholder="Ask follow-up questions..." />
+                <GeneratorInput onGenerate={handleNewMessage} placeholder="Ask follow-up questions..." />
             </div>
 
             {/* Floating Action Button */}
-             {hasAnalysis && (
-                <motion.div 
+            {hasAnalysis && (
+                <motion.div
                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     className="absolute bottom-24 right-4 z-30"
                 >
-                    <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-5 rounded-full shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 border border-white/10 backdrop-blur-md">
+                    <button
+                        onClick={handleStartAnalysis}
+                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-5 rounded-full shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 border border-white/10 backdrop-blur-md"
+                    >
                         Start Analyzing
                         <ArrowRight size={16} />
                     </button>
                 </motion.div>
-             )}
+            )}
         </div>
     );
 }

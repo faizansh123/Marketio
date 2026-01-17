@@ -21,6 +21,7 @@ export function Navbar() {
                     <Link href="#how-it-works" className="text-sm text-gray-400 hover:text-white transition-colors">How it Works</Link>
                     <Link href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">Features</Link>
                     <Link href="#workflow" className="text-sm text-gray-400 hover:text-white transition-colors">Workflow</Link>
+                    <Link href="/demo" className="text-sm text-gray-400 hover:text-white transition-colors">Demo</Link>
                 </div>
 
                 <div className="flex items-center gap-4">
