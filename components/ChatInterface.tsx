@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { GeneratorInput } from "./GeneratorInput";
 import { motion } from "framer-motion";
 import { Sparkles, Bot, User, TrendingUp, BarChart3, AlertCircle, CheckCircle2, FileIcon, ArrowRight } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -188,7 +190,37 @@ export function ChatInterface({ initialInput, initialFiles }: ChatInterfaceProps
                                     ))}
                                 </div>
                             )}
-                            <p className="whitespace-pre-wrap">{msg.content}</p>
+                            {/* Markdown Content */}
+                            <div className="text-sm leading-relaxed text-gray-200">
+                                <ReactMarkdown 
+                                    remarkPlugins={[remarkGfm]}
+                                    components={{
+                                        ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
+                                        ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
+                                        li: ({node, ...props}) => <li className="mb-1" {...props} />,
+                                        p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                                        strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
+                                        h1: ({node, ...props}) => <h1 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
+                                        h2: ({node, ...props}) => <h2 className="text-lg font-bold mb-2 mt-3 text-white" {...props} />,
+                                        h3: ({node, ...props}) => <h3 className="text-md font-bold mb-1 mt-2 text-white" {...props} />,
+                                        blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-indigo-500 pl-4 py-1 my-2 bg-white/5 rounded-r" {...props} />,
+                                        code: ({node, ...props}) => {
+                                            const { className, children } = props;
+                                            const match = /language-(\w+)/.exec(className || '');
+                                            const isInline = !match && !String(children).includes('\n');
+                                            return isInline ? (
+                                                <code className="bg-black/30 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-xs" {...props} />
+                                            ) : (
+                                                <code className="block bg-black/30 p-2 rounded-lg overflow-x-auto mb-2 text-xs font-mono" {...props} />
+                                            );
+                                        },
+                                        pre: ({node, ...props}) => <pre className="bg-transparent p-0 m-0" {...props} />,
+                                        a: ({node, ...props}) => <a className="text-indigo-400 hover:text-indigo-300 underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                                    }}
+                                >
+                                    {msg.content}
+                                </ReactMarkdown>
+                            </div>
 
                             {/* Render Analysis Widget if type is analysis */}
                             {msg.type === "analysis" && msg.data && (
