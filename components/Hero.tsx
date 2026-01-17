@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "./ui/button";
+import Link from "next/link";
 import { ArrowRight, Play, TrendingUp, Video, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -49,10 +50,12 @@ export function Hero() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="flex flex-col sm:flex-row items-center gap-4"
                     >
-                        <Button variant="glow" size="lg" className="h-14 px-8 text-lg">
-                            <Sparkles className="mr-2 h-5 w-5" />
-                            Start Generating
-                        </Button>
+                        <Link href="/generate">
+                            <Button variant="glow" size="lg" className="h-14 px-8 text-lg">
+                                <Sparkles className="mr-2 h-5 w-5" />
+                                Start Generating
+                            </Button>
+                        </Link>
                         <Button variant="outline" size="lg" className="h-14 px-8 text-lg border-white/10 hover:bg-white/5 hover:text-white">
                             <Play className="mr-2 h-5 w-5 fill-current" />
                             Watch Demo
