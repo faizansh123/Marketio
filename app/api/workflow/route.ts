@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-// Allow workflow to run for up to 5 minutes (300 seconds)
-export const maxDuration = 300;
+// Allow workflow to run for up to 20 minutes (1200 seconds)
+export const maxDuration = 1200;
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {

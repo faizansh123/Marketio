@@ -77,11 +77,11 @@ function LoadingContent() {
 
         const triggerWorkflow = async () => {
             try {
-                // Set a reasonable client-side timeout (e.g., 4 mins) just in case
+                // Set a reasonable client-side timeout (e.g., 20 mins) just in case
                 // This aborts the CLIENT request, even if server is still running
                 const controller = new AbortController();
-                // 240,000ms = 4 minutes
-                const timeoutId = setTimeout(() => controller.abort(), 240000);
+                // 1,200,000ms = 20 minutes
+                const timeoutId = setTimeout(() => controller.abort(), 1200000);
 
                 const res = await fetch("/api/workflow", {
                     method: "POST",
