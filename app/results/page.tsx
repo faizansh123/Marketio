@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
-import { CheckCircle, TrendingUp, Play, Copy, Loader2, Video, Sparkles } from "lucide-react";
+import { CheckCircle, TrendingUp, Play, Copy, Loader2, Video, Sparkles, FileText } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 // This interface matches the provided JSON structure
 interface AnalysisResult {
@@ -47,6 +48,8 @@ export default function ResultsPage() {
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
     const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
     const [promptText, setPromptText] = useState("");
+    const [ugcScript, setUgcScript] = useState<string | null>(null);
+    const [isGeneratingScript, setIsGeneratingScript] = useState(false);
 
     useEffect(() => {
         // Retrieve data from localStorage
@@ -263,6 +266,63 @@ export default function ResultsPage() {
                                 )}
                             </div>
                         </div>
+                    </section>
+
+                    {/* Detailed Script Generation */}
+                    <section className="p-8 rounded-3xl bg-card border border-border shadow-sm">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 className="text-xl font-semibold flex items-center gap-2">
+                                <span className="w-8 h-8 rounded-lg bg-pink-500 text-white flex items-center justify-center font-bold">3</span>
+                                Detailed Creator Script (Gemini)
+                            </h2>
+                            {!ugcScript && (
+                                <button
+                                    onClick={async () => {
+                                        if (!result) return;
+                                        setIsGeneratingScript(true);
+                                        try {
+                                            const res = await fetch("/api/generate-ugc-script", {
+                                                method: "POST",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    product_context: result.product_context,
+                                                    trend: result.top_trends[0]
+                                                })
+                                            });
+
+                                            const data = await res.json();
+
+                                            if (!res.ok) {
+                                                throw new Error(data.error || "Failed to generate script");
+                                            }
+
+                                            if (data.script) setUgcScript(data.script);
+                                        } catch (e: any) {
+                                            console.error(e);
+                                            alert(`Failed to generate script: ${e.message}`);
+                                        } finally {
+                                            setIsGeneratingScript(false);
+                                        }
+                                    }}
+                                    disabled={isGeneratingScript}
+                                    className="px-6 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-white text-sm font-medium transition-colors flex items-center gap-2"
+                                >
+                                    {isGeneratingScript ? <Loader2 className="animate-spin w-4 h-4" /> : <FileText className="w-4 h-4" />}
+                                    Generate Full Script
+                                </button>
+                            )}
+                        </div>
+
+                        {ugcScript ? (
+                            <div className="prose prose-invert max-w-none bg-muted/30 p-6 rounded-xl border border-border">
+                                <ReactMarkdown>{ugcScript}</ReactMarkdown>
+                            </div>
+                        ) : (
+                            <div className="text-center py-12 text-muted-foreground border-2 border-dashed border-border rounded-xl">
+                                <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                                <p>Click to generate a second-by-second UGC script customized for this trend.</p>
+                            </div>
+                        )}
                     </section>
                 </div>
             </div>
