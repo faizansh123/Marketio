@@ -6,168 +6,156 @@ import { CheckCircle, TrendingUp, BarChart3, Play, Copy, Loader2, Sparkles, Vide
 import { Navbar } from "@/components/Navbar";
 
 // Dummy Data mimicking the N8N payload
+// Dummy Data mimicking the N8N payload
 const dummyData = {
     "product_context": {
-        "name": "GlowUp Daily Serum",
-        "category": "Skincare - Anti-aging & Brightening",
+        "name": "High-Performance Wired/Wireless Headsets",
+        "category": "Audio Technology",
         "key_benefits": [
-            "Reduces fine lines",
-            "Evens skin tone",
-            "Boosts radiance",
-            "Deeply hydrates",
-            "Non-greasy, fast-absorbing"
+            "Immersive Audio",
+            "Ultra-Low Latency",
+            "Seamless Connectivity",
+            "Superior Comfort",
+            "Versatile Use (Gaming/Work)"
         ],
-        "target_customer": "Women aged 25-45, concerned about early signs of aging, dullness, and seeking effective, easy-to-use skincare solutions."
+        "target_customer": "Gamers, Remote Professionals, Content Creators, Audiophiles"
     },
     "top_trends": [
         {
-            "trend_name": "The Instant Glow-Up Transformation",
-            "why_it_works_for_this_product": "This trend directly addresses a common pain point (dull, tired skin) and visually demonstrates the immediate, tangible solution (radiant, hydrated skin) provided by GlowUp Daily Serum. The 'before & after' format creates a high-impact, visually compelling narrative that drives desire and perceived efficacy, crucial for conversion.",
+            "trend_name": "POV: Solving Your Audio Nightmares",
+            "why_it_works_for_this_product": "This trend directly addresses common frustrations users experience with inferior headsets (lag, bad mic, discomfort, tangled wires), positioning our product as the ultimate solution. Its high relatability drives engagement and conversion intent by solving a clear pain point.",
             "evidence_from_dataset": [
-                "Videos showcasing users with tired/dull skin, applying a product, then revealing a noticeable improvement in radiance and texture within seconds/minutes. These videos consistently achieved high views and saves due to the 'wow' factor.",
-                "Content featuring dramatic visual shifts from 'problem' (e.g., uneven skin tone, visible fine lines) to 'solution' (smooth, bright complexion) using fast cuts and trending audio, leading to strong engagement and 'where to buy' comments."
+                "Videos starting with 'When your teammates can't hear you...' or 'POV: Your old headphones die mid-game' consistently show high share rates and user comments expressing similar issues.",
+                "Content showcasing 'before & after' audio quality or comfort upgrades generates strong 'add to cart' clicks and positive sentiment regarding problem resolution."
             ],
             "product_specific_hooks": [
-                "My skin was dull, tired, and showing every late night... until THIS.",
-                "Watch my skin go from 'meh' to 'WOW' in 30 seconds.",
-                "Tired of dull skin? This is the only serum you need for an instant glow."
+                "POV: You're trying to clutch a game with laggy audio and a crackly mic.",
+                "When your wireless headset keeps disconnecting during important work calls...",
+                "Tired of uncomfortable headphones that pinch your ears after an hour of gaming?"
             ],
             "video_structure": {
-                "0_3s": "Close-up of dull, tired skin (or user looking visibly fatigued/frustrated). Text overlay: 'My biggest skin problem...' or 'Is your skin looking tired?'",
-                "3_10s": "Quick cut to user applying GlowUp Daily Serum. Show satisfying texture, gentle massage into skin. Voiceover: 'I tried everything, but nothing gave me this glow until GlowUp Daily Serum.'",
-                "10_20s": "Dramatic transition to user with visibly brighter, hydrated, and smoother skin (after absorption). Show close-ups of radiant complexion, emphasizing reduced fine lines. Voiceover: 'Look at this glow! Fine lines are softer, my skin feels amazing and looks years younger.'",
-                "20_30s": "User confidently smiling, holding the GlowUp Daily Serum. Clear call to action: 'Get your glow-up now! Link in bio to shop the secret to radiant skin.'"
+                "0_3s": "Hook: Visually depict a common headset problem (e.g., frustrated gamer, tangled wires, static sound effect).",
+                "3_10s": "Amplify the pain point with quick cuts of common headset issues. Introduce the product as the immediate solution.",
+                "10_20s": "Showcase product features solving the problem (e.g., seamless wireless connection, crystal-clear mic demo, comfortable fit close-up).",
+                "20_30s": "User enjoying the product, benefits highlighted with text overlays, clear call to action."
             },
             "editing_notes": [
-                "Use fast, impactful cuts between 'before' and 'after' shots. Ensure bright, natural lighting for 'after' segments to highlight radiance.",
-                "Incorporate a trending, upbeat audio track. Utilize clear, concise text overlays to highlight key benefits like 'Instant Radiance' and 'Reduces Fine Lines'."
+                "Use dramatic, jarring sound effects for the 'problem' phase and smooth, high-fidelity audio for the 'solution' phase to create contrast.",
+                "Incorporate text overlays for key pain points and product benefits to reinforce the message and ensure clarity even without sound."
             ],
             "caption_templates": [
-                "Confession: My skin used to look as tired as I felt. 😩 But then GlowUp Daily Serum entered the chat and changed EVERYTHING. Seriously, the glow is real! ✨ #GlowUp #SkincareRoutine #BeforeAndAfter #RadiantSkin #DailySerum",
-                "From dull to dazzling in one step! If you're struggling with tired-looking skin, you NEED to try GlowUp Daily Serum. My secret weapon for a youthful glow! 🤫💖 #AntiAging #SkincareGoals #MustHave #GlowUpDaily"
+                "Level up your audio game! 🎧 Say goodbye to lag and discomfort with our new high-performance headsets. #GameChanger #AudioUpgrade",
+                "Is your headset holding you back? 🤔 Experience crystal-clear sound and ultimate comfort. Tap to shop! #TechSolutions #MustHave"
             ],
             "hashtag_strategy": {
                 "broad": [
-                    "#Skincare",
-                    "#Beauty",
-                    "#BeautyHacks"
+                    "#GamingHeadset",
+                    "#WirelessHeadphones"
                 ],
                 "niche": [
-                    "#AntiAgingSerum",
-                    "#BrighteningSerum",
-                    "#GlowUpChallenge"
+                    "#LowLatency",
+                    "#GamerLife"
                 ],
                 "intent": [
-                    "#ShopNow",
-                    "#LinkInBio",
-                    "#SkincareRoutine"
+                    "#BuyNow",
+                    "#ShopHeadsets"
                 ]
             }
         },
         {
-            "trend_name": "Authentic Routine Integration / 'Get Ready With Me' (GRWM)",
-            "why_it_works_for_this_product": "This trend builds trust and relatability by showcasing GlowUp Daily Serum seamlessly integrated into a real-life morning or evening routine. It feels less like an overt ad and more like a genuine recommendation from a peer, emphasizing ease of use and consistent results, which is key for long-term product adoption and conversion.",
+            "trend_name": "Unleash Your Inner Pro: Performance Demos",
+            "why_it_works_for_this_product": "This trend directly demonstrates the product's superior capabilities in its core use cases (gaming, professional audio), appealing to users who prioritize performance and competitive advantage. Visual and auditory proof builds trust and showcases tangible value.",
             "evidence_from_dataset": [
-                "Videos where users naturally incorporate skincare products into their daily routines (e.g., GRWM, evening routine), talking through each step and highlighting product benefits. These videos consistently achieved high watch times and positive, engaging comments.",
-                "Content that demonstrates product application within a broader lifestyle context, making the product feel essential and easy to use, leading to higher 'add to cart' rates due to perceived authenticity."
+                "Videos featuring side-by-side comparisons of audio clarity or latency tests consistently achieve high completion rates and generate 'wow' comments.",
+                "Content showing intense gameplay or professional use cases with the product drives significant engagement and product page views from aspirational users."
             ],
             "product_specific_hooks": [
-                "Come get ready with me and see my secret to glowing skin!",
-                "My 3-step morning routine for skin that actually glows all day.",
-                "This is how I keep my skin looking fresh and hydrated, even on 5 hours of sleep."
+                "Hear every single footstep: The ultimate gaming advantage is here.",
+                "Is your mic this clear? Take our sound test challenge!",
+                "Experience audio like never before: Wired vs. Wireless performance, no compromise."
             ],
             "video_structure": {
-                "0_3s": "User starting their routine (e.g., washing face, sitting at vanity). Hook text overlay: 'My everyday glow secret!'",
-                "3_10s": "User applies toner, then picks up GlowUp Daily Serum. 'Next, my absolute favorite: GlowUp Daily Serum. A few drops are all I need for incredible hydration and brightness.' Show satisfying application.",
-                "10_20s": "User continues with other routine steps (moisturizer, SPF) while subtly highlighting how the serum preps skin. 'It absorbs so fast, leaves no sticky residue, and makes my moisturizer work even better. My skin feels plump and smooth.' Show radiant skin up close.",
-                "20_30s": "User finishes routine, looks confident and radiant. 'And that's it! Ready to take on the day with my GlowUp. You can find this game-changer in my bio!'"
+                "0_3s": "Hook: Intense gaming moment, crisp audio snippet, or a direct performance challenge.",
+                "3_10s": "Quick cuts showcasing key performance features (e.g., ultra-low latency in action, noise cancellation demo, audio spectrum visualization).",
+                "10_20s": "In-depth demo of a specific feature (e.g., mic quality test with voiceover, immersive sound experience with game footage, seamless switching between devices).",
+                "20_30s": "Highlight benefits for specific users (gamers, remote workers), strong call to action with product shot."
             },
             "editing_notes": [
-                "Use natural lighting and smooth transitions between routine steps. Incorporate soft, calming background music.",
-                "Maintain an authentic, conversational voiceover. Ensure subtle product placement that feels organic rather than forced."
+                "Utilize split-screen effects or 'before & after' comparisons to contrast generic audio/mic quality with the product's superior performance.",
+                "Incorporate dynamic text overlays to highlight technical specs like '20ms Latency' or 'Crystal Clear Mic' for quick information absorption."
             ],
             "caption_templates": [
-                "GRWM for a productive day! ✨ My secret weapon for that 'lit-from-within' glow? The GlowUp Daily Serum. It's a game-changer for fine lines and dullness! #GRWM #SkincareRoutine #MorningRoutine #GlowUpDaily #HealthySkin",
-                "My skin has never felt better since I added GlowUp Daily Serum to my daily routine. Hydrated, bright, and ready for anything! What's your go-to? 👇 #DailySkincare #BeautyRoutine #Serum #SkincareSecrets"
+                "Dominate every game with unparalleled audio precision. 🏆 Get the edge you need. Link in bio! #GamingGear #ProAudio",
+                "From competitive gaming to crystal-clear calls, our headsets deliver. Hear the difference. #TechPerformance #MustHaveTech"
             ],
             "hashtag_strategy": {
                 "broad": [
-                    "#GRWM",
-                    "#SkincareRoutine",
-                    "#BeautyTips"
+                    "#GamingSetup",
+                    "#HeadsetReview"
                 ],
                 "niche": [
-                    "#MorningSkincare",
-                    "#EveningRoutine",
-                    "#SkincareSecrets"
+                    "#EsportsReady",
+                    "#Audiophile"
                 ],
                 "intent": [
-                    "#GetTheLook",
-                    "#MustHaveProduct",
-                    "#LinkInBio"
+                    "#BestGamingHeadset",
+                    "#ShopNow"
                 ]
             }
         },
         {
-            "trend_name": "Quick Skincare Hacks / Educational Bites",
-            "why_it_works_for_this_product": "This trend positions GlowUp Daily Serum as an intelligent, effective solution within a broader context of skincare knowledge. It appeals to users looking for quick, actionable advice and smart product choices, building authority and trust. By presenting the serum as a 'hack' or essential step, it elevates its perceived value and necessity for achieving desired skin goals.",
+            "trend_name": "Satisfying Unboxing & Aesthetic Setup",
+            "why_it_works_for_this_product": "This trend taps into the desire for premium experiences and visual satisfaction. ASMR elements create an immersive and calming experience, while aesthetic setups inspire users to envision the product in their own space, building desire through sensory appeal and aspirational content.",
             "evidence_from_dataset": [
-                "Short, punchy videos offering a 'hack' or 'tip' related to skincare, often featuring a specific product as the solution to a common problem. These videos achieved high shareability and saves due to their informative and actionable nature.",
-                "Content that debunks skincare myths or simplifies complex routines, introducing a product as the 'smart switch' or 'missing step'. These videos generated strong interest and 'learn more' clicks."
+                "ASMR unboxing videos of tech products consistently generate high watch times and positive sentiment in comments, often leading to 'where can I buy this' inquiries.",
+                "Videos showcasing clean, aesthetic desk setups featuring the product drive aspirational engagement and significant saves, indicating strong purchase intent."
             ],
             "product_specific_hooks": [
-                "STOP making this skincare mistake! (And what to do instead)",
-                "The one ingredient your anti-aging routine is missing.",
-                "Want brighter, smoother skin? It's simpler than you think."
+                "Unbox pure audio bliss. ✨ The most satisfying reveal.",
+                "The most satisfying headset setup you'll see today, guaranteed.",
+                "POV: You just upgraded your entire setup with the ultimate audio gear."
             ],
             "video_structure": {
-                "0_3s": "User presents a common skincare problem or myth (e.g., 'Are you skipping serum?'). Quick, direct question with text overlay.",
-                "3_10s": "User explains *why* it's a problem or debunks the myth. 'Many think moisturizer is enough, but serum targets specific concerns deeper, like fine lines and dullness!'",
-                "10_20s": "Introduce GlowUp Daily Serum as the solution. Show key ingredients or benefits visually (e.g., 'Packed with Vitamin C & Hyaluronic Acid!'). 'That's why GlowUp Daily Serum is a non-negotiable for me – it tackles fine lines AND boosts radiance like nothing else.'",
-                "20_30s": "Quick demo of application, emphasizing ease and visible results. Call to action. 'Make the smart switch for visibly radiant, younger-looking skin. Tap the link to transform your routine!'"
+                "0_3s": "Hook: Close-up of the product box, satisfying plastic peel, or a visually appealing shot of the headset.",
+                "3_10s": "ASMR unboxing sequence (peeling plastic, opening box, gentle clicks, product reveal).",
+                "10_20s": "Aesthetic setup montage (placing headset on stand, connecting cables neatly, close-ups of design details, RGB lighting if applicable).",
+                "20_30s": "Final aesthetic shot of the complete setup, user interacting with the product, subtle call to action."
             },
             "editing_notes": [
-                "Maintain a fast-paced rhythm with clear, bold text overlays for key points and statistics. Use an energetic, authoritative voiceover.",
-                "Incorporate quick graphics or bullet points to convey information efficiently. Consider before/after flashes if applicable to reinforce the 'solution'."
+                "Prioritize clean, well-lit shots with a focus on product textures and design details. Use slow-motion for satisfying moments like peeling plastic or placing the headset.",
+                "Integrate subtle ASMR sounds (unboxing, button clicks, cable management) throughout the video, ensuring background music is minimal or absent to highlight these sounds."
             ],
             "caption_templates": [
-                "Skincare hack alert! 🚨 If you're not using a daily serum, you're missing out on major glow-up potential. GlowUp Daily Serum is my secret for tackling fine lines and boosting radiance! #SkincareHack #BeautyTips #AntiAging #GlowUp #SerumBenefits",
-                "Myth busted: You don't need 10 steps for amazing skin! Just one powerful serum like GlowUp Daily Serum can transform your complexion. ✨ Ready for brighter, smoother skin? #SkincareEducation #BeautySecrets #DailySerum #HealthySkin #SmartSkincare"
+                "Upgrade your setup, elevate your sound. ✨ Every detail designed for perfection. #DeskSetup #TechAesthetics",
+                "Pure audio, pure style. Unbox the future of sound. Link in bio! #Unboxing #GamingRoom"
             ],
             "hashtag_strategy": {
                 "broad": [
-                    "#SkincareTips",
-                    "#BeautyHacks",
-                    "#LearnOnTikTok"
+                    "#TechUnboxing",
+                    "#ASMR"
                 ],
                 "niche": [
-                    "#SerumBenefits",
-                    "#AntiAgingTips",
-                    "#VitaminCSkincare"
+                    "#DeskGoals",
+                    "#GamingSetupIdeas"
                 ],
                 "intent": [
-                    "#ShopSkincare",
-                    "#BeautyDeals",
-                    "#TryItNow"
+                    "#NewHeadset",
+                    "#ShopNow"
                 ]
             }
         }
     ],
     "creator_recipe_json": {
-        "hook": "My skin was dull, tired, and showing every late night... until THIS.",
-        "video_style": "Fast-paced visual transformation from tired, dull skin to radiant, glowing skin, with satisfying product application shots and clear benefit overlays. Utilize bright, natural lighting for 'after' shots and an upbeat, trending audio track.",
-        "caption": "Confession: My skin used to look as tired as I felt. 😩 But then GlowUp Daily Serum entered the chat and changed EVERYTHING. Seriously, the glow is real! ✨ Tap the link to get your own glow-up! #GlowUp #SkincareRoutine #BeforeAndAfter #RadiantSkin #DailySerum #AntiAging #ShopNow",
+        "hook": "Stop scrolling! Your audio game is about to change forever. 🎧",
+        "video_style": "Fast-paced, engaging cuts with clear product demonstrations, overlaid with trending audio and dynamic text.",
+        "caption": "Experience the difference with our high-performance headsets. Wired or wireless, superior sound is guaranteed. Tap the link to upgrade! #AudioUpgrade #TechEssentials #MustHave",
         "hashtags": [
-            "#GlowUp",
-            "#SkincareRoutine",
-            "#BeforeAndAfter",
-            "#RadiantSkin",
-            "#DailySerum",
-            "#AntiAging",
-            "#ShopNow"
+            "#GamingHeadset",
+            "#WirelessAudio",
+            "#TechReview"
         ]
     },
-    "veo3_prompt": "Generate a 8-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
+    "veo3_prompt": "Generate a dynamic TikTok ad for high-performance wired/wireless headsets. The video should feature quick cuts, showcasing both the sleek design and powerful audio capabilities. Include a 'problem/solution' narrative (e.g., bad old headphones vs. new product) and a 'performance demo' (e.g., gaming sound clarity, clear mic test). Incorporate text overlays highlighting key benefits like 'ultra-low latency' and 'crystal-clear mic'. Use trending, upbeat background music and a clear call to action at the end."
 };
 
 export default function DemoPage() {
@@ -190,6 +178,7 @@ export default function DemoPage() {
             }
 
             const data = await res.json();
+<<<<<<< HEAD
             setVideoUrl(data.videoUrl); 
 
             // --- AUTO-EXPORT TO SHEETS ---
@@ -207,6 +196,9 @@ export default function DemoPage() {
               .catch(e => console.error("Auto-export failed:", e));
             // -----------------------------
             
+=======
+            setVideoUrl(data.videoUrl);
+>>>>>>> 9815f8fce447598374a231355cae86c4c0008e3d
         } catch (error: any) {
             console.error(error);
             alert(`Video generation failed: ${error.message}`);
