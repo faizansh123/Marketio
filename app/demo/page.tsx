@@ -167,7 +167,7 @@ const dummyData = {
             "#ShopNow"
         ]
     },
-    "veo3_prompt": "Generate a 30-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
+    "veo3_prompt": "Generate a 3-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
 };
 
 export default function DemoPage() {
@@ -336,7 +336,7 @@ export default function DemoPage() {
                                     </button>
                                 ) : (
                                     <div className="space-y-4">
-                                        <div className="aspect-video w-full rounded-xl overflow-hidden border border-white/20 bg-black relative">
+                                        <div className="aspect-[9/16] w-full max-w-[320px] mx-auto rounded-xl overflow-hidden border border-white/20 bg-black relative shadow-2xl">
                                             <video src={videoUrl} controls autoPlay loop className="w-full h-full object-cover" />
                                         </div>
                                         <button
