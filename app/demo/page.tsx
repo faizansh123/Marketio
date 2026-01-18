@@ -167,7 +167,7 @@ const dummyData = {
             "#ShopNow"
         ]
     },
-    "veo3_prompt": "Generate a 3-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
+    "veo3_prompt": "Generate a 8-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
 };
 
 export default function DemoPage() {

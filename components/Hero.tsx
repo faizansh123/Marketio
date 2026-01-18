@@ -12,16 +12,16 @@ export function Hero() {
     const { theme } = useTheme();
 
     return (
-        <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-start pt-20 md:pt-32 overflow-hidden bg-[#f8f9fa]">
+        <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-start pt-20 md:pt-32 overflow-hidden bg-background">
             
             {/* Grid Background Pattern (Subtle) */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-[0.3]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-[0.3]" />
 
             {/* Content Container */}
             <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center">
                 
                 {/* Main Headline */}
-                <h1 className="flex flex-col gap-2 font-[family-name:var(--font-poppins)] text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-[#0f172a] leading-[1.1]">
+                <h1 className="flex flex-col gap-2 font-[family-name:var(--font-poppins)] text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
                     <span>Stop struggling with content.</span>
                     <span>Start dominating your niche.</span>
                 </h1>
@@ -35,7 +35,7 @@ export function Hero() {
                 <div className="mt-8 mb-20 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Button 
                         size="lg" 
-                        className="rounded-full px-8 py-6 text-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2"
+                        className="rounded-full px-8 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2"
                         onClick={() => router.push('/generate')}
                     >
                         <Sparkles className="h-5 w-5" />
@@ -45,10 +45,10 @@ export function Hero() {
                      <Button 
                         variant="outline"
                         size="lg" 
-                        className="rounded-full px-8 py-6 text-lg border-2 border-indigo-100 hover:bg-indigo-50 text-indigo-900 font-semibold transition-all duration-300 gap-2"
+                        className="rounded-full px-8 py-6 text-lg border-2 border-primary/20 hover:bg-primary/5 text-primary font-semibold transition-all duration-300 gap-2"
                         onClick={() => setIsDemoOpen(true)}
                     >
-                        <Play className="h-5 w-5 fill-indigo-900" />
+                        <Play className="h-5 w-5 fill-current" />
                         Watch Demo
                     </Button>
                 </div>
@@ -82,23 +82,23 @@ export function Hero() {
             <div className="absolute bottom-0 left-0 right-0 w-full h-[40vh] md:h-[50vh] z-0 pointer-events-none">
                 <svg className="w-full h-full" viewBox="0 0 1440 400" preserveAspectRatio="none">
                      {/* Dashed Vertical Lines (Weeks) */}
-                    <line x1="200" y1="0" x2="200" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
-                    <text x="200" y="390" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 2</text>
+                    <line x1="200" y1="0" x2="200" y2="400" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="4 4" className="text-border" />
+                    <text x="200" y="390" fill="currentColor" fillOpacity="0.4" fontSize="10" textAnchor="middle" className="text-muted-foreground">Week 2</text>
                     
-                    <line x1="500" y1="0" x2="500" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
-                    <text x="500" y="380" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 4</text>
+                    <line x1="500" y1="0" x2="500" y2="400" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="4 4" className="text-border" />
+                    <text x="500" y="380" fill="currentColor" fillOpacity="0.4" fontSize="10" textAnchor="middle" className="text-muted-foreground">Week 4</text>
 
-                    <line x1="800" y1="0" x2="800" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
-                    <text x="800" y="380" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 6</text>
+                    <line x1="800" y1="0" x2="800" y2="400" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="4 4" className="text-border" />
+                    <text x="800" y="380" fill="currentColor" fillOpacity="0.4" fontSize="10" textAnchor="middle" className="text-muted-foreground">Week 6</text>
 
-                    <line x1="1100" y1="0" x2="1100" y2="400" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" />
-                    <text x="1100" y="380" fill="#94a3b8" fontSize="10" textAnchor="middle">Week 8</text>
+                    <line x1="1100" y1="0" x2="1100" y2="400" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="4 4" className="text-border" />
+                    <text x="1100" y="380" fill="currentColor" fillOpacity="0.4" fontSize="10" textAnchor="middle" className="text-muted-foreground">Week 8</text>
 
                     {/* Gradient Definition */}
                     <defs>
                         <linearGradient id="graphGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#818cf8" stopOpacity="0.2" />
-                            <stop offset="100%" stopColor="#818cf8" stopOpacity="0.0" />
+                            <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.2" />
+                            <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0.0" />
                         </linearGradient>
 
                     </defs>
@@ -113,13 +113,13 @@ export function Hero() {
                     <path 
                         d="M0,380 C360,370 540,360 720,290 C950,180 1150,100 1440,30" 
                         fill="none" 
-                        stroke="#4f46e5" 
+                        stroke="var(--color-primary)" 
                         strokeWidth="3" 
                         strokeLinecap="round"
                     />
 
                     {/* Blue Dot (Scaling Phase) - Week 8 */}
-                    <circle cx="950" cy="188" r="7" fill="#3b82f6" stroke="white" strokeWidth="4" />
+                    <circle cx="950" cy="188" r="7" fill="var(--color-primary)" stroke="var(--color-background)" strokeWidth="4" />
 
                 </svg>
             </div>
@@ -129,7 +129,7 @@ export function Hero() {
                 <p className="text-sm font-medium text-muted-foreground max-w-[220px] leading-tight">
                     The old way to spot trends, write scripts, and edit videos:
                 </p>
-                <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-black/5 p-2 rounded-full shadow-lg w-fit">
+                <div className="flex items-center gap-2 bg-card/80 backdrop-blur-sm border border-border/50 p-2 rounded-full shadow-lg w-fit">
                     
                     {/* TikTok (Research) */}
                     <div className="w-8 h-8 flex items-center justify-center bg-black rounded-full shadow-sm overflow-hidden p-1.5">
@@ -142,7 +142,7 @@ export function Hero() {
                     </div>
 
                      {/* ChatGPT (Scripting) */}
-                     <div className="w-8 h-8 flex items-center justify-center bg-[#74aa9c] rounded-full shadow-sm border border-emerald-100">
+                    <div className="w-8 h-8 flex items-center justify-center bg-[#74aa9c] rounded-full shadow-sm border border-emerald-100">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" className="w-5 h-5" />
                     </div>
 
@@ -162,8 +162,8 @@ export function Hero() {
                     </div>
 
                     {/* +12 Badge */}
-                    <div className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full shadow-sm border border-gray-200">
-                        <span className="text-xs font-bold text-gray-500">+12</span>
+                    <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-full shadow-sm border border-border">
+                        <span className="text-xs font-bold text-muted-foreground">+12</span>
                     </div>
 
                 </div>

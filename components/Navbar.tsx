@@ -22,8 +22,8 @@ export function Navbar() {
                 
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
-                    <img src="/assets/logo.png" alt="Marketio" className="h-10 w-auto object-contain" />
-                    <span className="text-2xl font-extrabold tracking-tighter text-[#0f172a] font-[family-name:var(--font-poppins)]">marketio</span>
+                    <img src="/assets/logo.png" alt="Marketio" className="h-10 w-10 rounded-full object-cover" />
+                    <span className="text-2xl font-extrabold tracking-tighter text-foreground font-[family-name:var(--font-poppins)]">marketio</span>
                 </Link>
 
 
