@@ -46,13 +46,16 @@ export default function ResultsPage() {
     const [result, setResult] = useState<AnalysisResult | null>(null);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
     const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
+    const [promptText, setPromptText] = useState("");
 
     useEffect(() => {
         // Retrieve data from localStorage
         const storedData = localStorage.getItem("analysisResult");
         if (storedData) {
             try {
-                setResult(JSON.parse(storedData));
+                const parsed = JSON.parse(storedData)
+                setResult(parsed);
+                setPromptText(parsed.veo3_prompt);
             } catch (e) {
                 console.error("Failed to parse result data", e);
                 router.push("/");
@@ -70,7 +73,7 @@ export default function ResultsPage() {
             const res = await fetch("/api/generate-video", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt: result.veo3_prompt })
+                body: JSON.stringify({ prompt: promptText })
             });
 
             if (!res.ok) {
@@ -220,9 +223,12 @@ export default function ResultsPage() {
                                 <p className="text-muted-foreground text-sm">
                                     We've constructed a cinematic prompt for Gemini Veo3 based on this strategy.
                                 </p>
-                                <div className="p-4 bg-background/50 rounded-xl border border-border text-sm text-muted-foreground font-mono leading-relaxed h-32 overflow-y-auto custom-scrollbar">
-                                    {result.veo3_prompt}
-                                </div>
+
+                                <textarea
+                                    value={promptText}
+                                    onChange={(e) => setPromptText(e.target.value)}
+                                    className="w-full p-4 bg-background/50 rounded-xl border border-border text-sm text-muted-foreground font-mono leading-relaxed h-32 custom-scrollbar resize-none focus:outline-none focus:border-indigo-500/60 transition-colors"
+                                />
 
                                 {!videoUrl ? (
                                     <button

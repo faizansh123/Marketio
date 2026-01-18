@@ -161,6 +161,7 @@ const dummyData = {
 export default function DemoPage() {
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
     const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
+    const [promptText, setPromptText] = useState(dummyData.veo3_prompt);
 
     const handleGenerateVideo = async () => {
         setIsGeneratingVideo(true);
@@ -169,7 +170,7 @@ export default function DemoPage() {
             const res = await fetch("/api/generate-video", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt: dummyData.veo3_prompt })
+                body: JSON.stringify({ prompt: promptText })
             });
 
             if (!res.ok) {
@@ -178,7 +179,7 @@ export default function DemoPage() {
             }
 
             const data = await res.json();
-            setVideoUrl(data.videoUrl); 
+            setVideoUrl(data.videoUrl);
 
             // --- AUTO-EXPORT TO SHEETS ---
             // We fire and forget this request so it doesn't block the UI
@@ -191,8 +192,8 @@ export default function DemoPage() {
                     hashtags: dummyData.creator_recipe_json.hashtags
                 })
             }).then(r => r.json())
-              .then(d => console.log("Auto-export to sheets result:", d))
-              .catch(e => console.error("Auto-export failed:", e));
+                .then(d => console.log("Auto-export to sheets result:", d))
+                .catch(e => console.error("Auto-export failed:", e));
             // -----------------------------
         } catch (error: any) {
             console.error(error);
@@ -315,9 +316,12 @@ export default function DemoPage() {
                                 <p className="text-indigo-200 text-sm">
                                     We've constructed a cinematic prompt for Gemini Veo3 based on this strategy.
                                 </p>
-                                <div className="p-4 bg-black/40 rounded-xl border border-indigo-500/30 text-sm text-gray-300 font-mono leading-relaxed h-32 overflow-y-auto custom-scrollbar">
-                                    {dummyData.veo3_prompt}
-                                </div>
+
+                                <textarea
+                                    value={promptText}
+                                    onChange={(e) => setPromptText(e.target.value)}
+                                    className="w-full p-4 bg-black/40 rounded-xl border border-indigo-500/30 text-sm text-gray-300 font-mono leading-relaxed h-32 custom-scrollbar resize-none focus:outline-none focus:border-indigo-500/60 transition-colors"
+                                />
 
                                 {!videoUrl ? (
                                     <button
