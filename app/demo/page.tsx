@@ -167,7 +167,7 @@ const dummyData = {
             "#ShopNow"
         ]
     },
-    "veo3_prompt": "Generate a 30-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
+    "veo3_prompt": "Generate a 8-second TikTok-style video for 'GlowUp Daily Serum'. The video should start with a close-up of a young woman (25-35) looking tired with slightly dull skin, expressing frustration. Quickly transition to her applying the 'GlowUp Daily Serum' with satisfying, close-up shots of the serum texture and gentle massage. The mid-section should show a dramatic visual transformation to her skin looking visibly radiant, hydrated, and smooth, with a 'lit-from-within' glow. Include text overlays like 'Dull Skin? NO MORE!' and 'Instant Radiance Boost'. End with the woman confidently smiling, holding the product, and a clear call to action: 'Get Your GlowUp! Link in Bio'. Use an upbeat, trending audio track. Focus on bright, natural lighting for the 'after' shots."
 };
 
 export default function DemoPage() {
@@ -184,15 +184,16 @@ export default function DemoPage() {
                 body: JSON.stringify({ prompt: dummyData.veo3_prompt })
             });
 
-            if (!res.ok) throw new Error("Failed to generate video");
+            if (!res.ok) {
+                const errorData = await res.json();
+                throw new Error(errorData.error || "Failed to generate video");
+            }
 
             const data = await res.json();
-            setVideoUrl(data.videoUrl); // Assuming API returns { videoUrl: "..." }
-        } catch (error) {
+            setVideoUrl(data.videoUrl); 
+        } catch (error: any) {
             console.error(error);
-            // Fallback for demo if API fails or isn't set up
-            // Using a placeholder video or error message would be better in prod
-            alert("Video generation failed (API mock). In production, this connects to Veo3.");
+            alert(`Video generation failed: ${error.message}`);
         } finally {
             setIsGeneratingVideo(false);
         }
@@ -335,7 +336,7 @@ export default function DemoPage() {
                                     </button>
                                 ) : (
                                     <div className="space-y-4">
-                                        <div className="aspect-video w-full rounded-xl overflow-hidden border border-white/20 bg-black relative">
+                                        <div className="aspect-[9/16] w-full max-w-[320px] mx-auto rounded-xl overflow-hidden border border-white/20 bg-black relative shadow-2xl">
                                             <video src={videoUrl} controls autoPlay loop className="w-full h-full object-cover" />
                                         </div>
                                         <button
