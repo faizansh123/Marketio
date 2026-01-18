@@ -126,12 +126,39 @@ export default function ResultsPage() {
                         </div>
                     </div>
 
+                    {/* All Analyzed Trends */}
+                    <section className="space-y-6">
+                        <h2 className="text-xl font-semibold flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-lg bg-orange-500 text-white flex items-center justify-center font-bold">1</span>
+                            Analyzed Viral Territories
+                        </h2>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {result.top_trends.map((trend, idx) => (
+                                <div key={idx} className="p-6 rounded-2xl bg-card border border-border hover:border-orange-500/50 transition-colors flex flex-col">
+                                    <div className="mb-4">
+                                        <div className="text-xs font-mono text-orange-500 mb-2 uppercase tracking-wider">Trend #{idx + 1}</div>
+                                        <h3 className="text-lg font-bold mb-2 leading-tight">{trend.trend_name}</h3>
+                                        <p className="text-sm text-muted-foreground line-clamp-3">{trend.why_it_works_for_this_product}</p>
+                                    </div>
+                                    <div className="mt-auto pt-4 border-t border-border">
+                                        <div className="flex flex-wrap gap-2">
+                                            {trend.hashtag_strategy.niche.slice(0, 2).map((tag, i) => (
+                                                <span key={i} className="text-[10px] bg-secondary px-2 py-1 rounded text-secondary-foreground">#{tag.replace('#', '')}</span>
+                                            ))}
+                                            <span className="text-[10px] bg-secondary px-2 py-1 rounded text-secondary-foreground">+{trend.hashtag_strategy.broad.length} more</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     {/* Top Trend Spotlight */}
                     {result.top_trends.length > 0 && (
                         <section className="space-y-6">
                             <h2 className="text-xl font-semibold flex items-center gap-2">
                                 <TrendingUp className="text-indigo-500" />
-                                Top Viral Opportunity
+                                Selected Viral Opportunity
                             </h2>
                             <div className="grid md:grid-cols-3 gap-6">
                                 <div className="md:col-span-2 p-8 rounded-3xl bg-card border border-border shadow-sm">
