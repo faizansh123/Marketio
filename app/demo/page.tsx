@@ -178,7 +178,6 @@ export default function DemoPage() {
             }
 
             const data = await res.json();
-<<<<<<< HEAD
             setVideoUrl(data.videoUrl); 
 
             // --- AUTO-EXPORT TO SHEETS ---
@@ -195,10 +194,6 @@ export default function DemoPage() {
               .then(d => console.log("Auto-export to sheets result:", d))
               .catch(e => console.error("Auto-export failed:", e));
             // -----------------------------
-            
-=======
-            setVideoUrl(data.videoUrl);
->>>>>>> 9815f8fce447598374a231355cae86c4c0008e3d
         } catch (error: any) {
             console.error(error);
             alert(`Video generation failed: ${error.message}`);
