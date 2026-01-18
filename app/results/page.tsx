@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
-import { CheckCircle, TrendingUp, Play, Copy, Loader2, Video, Sparkles, FileText } from "lucide-react";
+import { CheckCircle, TrendingUp, Play, Copy, Loader2, Video, Sparkles, FileText, Download } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 // This interface matches the provided JSON structure
@@ -50,6 +50,8 @@ export default function ResultsPage() {
     const [promptText, setPromptText] = useState("");
     const [ugcScript, setUgcScript] = useState<string | null>(null);
     const [isGeneratingScript, setIsGeneratingScript] = useState(false);
+    const [imageAdUrl, setImageAdUrl] = useState<string | null>(null);
+    const [isGeneratingImage, setIsGeneratingImage] = useState(false);
 
     useEffect(() => {
         // Retrieve data from localStorage
@@ -348,6 +350,69 @@ export default function ResultsPage() {
                             <div className="text-center py-12 text-muted-foreground border-2 border-dashed border-border rounded-xl">
                                 <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
                                 <p>Click to generate a second-by-second UGC script customized for this trend.</p>
+                            </div>
+                        )}
+                    </section>
+
+                    {/* Image Ad Generator */}
+                    <section className="p-8 rounded-3xl bg-card border border-border shadow-sm">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                            <h2 className="text-xl font-semibold flex items-center gap-2">
+                                <span className="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold">4</span>
+                                AI Image Ad Generator (Gemini)
+                            </h2>
+                            {!imageAdUrl && (
+                                <button
+                                    onClick={async () => {
+                                        if (!result) return;
+                                        setIsGeneratingImage(true);
+                                        try {
+                                            // Use the model for generation
+                                            // Note: The @google/genai SDK usage for image generation might require specific parameters or a different method if not standard text generation.
+                                            // Assuming standard generateContent with 'IMAGE' modality request for now.
+                                            const res = await fetch("/api/generate-image", {
+                                                method: "POST",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    product_context: result.product_context,
+                                                    trend: result.top_trends[0]
+                                                })
+                                            });
+                                            const data = await res.json();
+                                            if (!res.ok) throw new Error(data.error || "Failed");
+                                            if (data.imageAdUrl) setImageAdUrl(data.imageAdUrl);
+                                        } catch (e: any) {
+                                            console.error(e);
+                                            alert(`Failed to generate image: ${e.message}`);
+                                        } finally {
+                                            setIsGeneratingImage(false);
+                                        }
+                                    }}
+                                    disabled={isGeneratingImage}
+                                    className="px-6 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium transition-colors flex items-center gap-2"
+                                >
+                                    {isGeneratingImage ? <Loader2 className="animate-spin w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
+                                    Generate Ad Image
+                                </button>
+                            )}
+                        </div>
+
+                        {imageAdUrl ? (
+                            <div className="bg-muted/30 p-6 rounded-xl border border-border flex flex-col items-center gap-4">
+                                <img src={imageAdUrl} alt="Generated Ad" className="max-w-full h-auto rounded-lg shadow-lg max-h-[500px]" />
+                                <a
+                                    href={imageAdUrl}
+                                    download="generated-ad-image.png"
+                                    className="px-6 py-2 rounded-lg bg-secondary hover:bg-secondary/80 text-sm font-medium transition-colors flex items-center gap-2"
+                                >
+                                    <Download className="w-4 h-4" />
+                                    Download Image
+                                </a>
+                            </div>
+                        ) : (
+                            <div className="text-center py-12 text-muted-foreground border-2 border-dashed border-border rounded-xl">
+                                <Sparkles className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                                <p>Click to generate a high-converting social media ad image.</p>
                             </div>
                         )}
                     </section>
