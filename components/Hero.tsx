@@ -21,10 +21,11 @@ export function Hero() {
             <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center">
                 
                 {/* Main Headline */}
-                <h1 className="flex flex-col gap-2 font-[family-name:var(--font-poppins)] text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
-                    <span>Stop struggling with content.</span>
-                    <span>Start dominating your niche.</span>
-                </h1>
+                <h1 className="flex flex-col gap-2 font-[family-name:var(--font-poppins)] text-4xl md:text-6xl lg:text-6xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
+                   <span>Stop struggling with content.</span>
+                   <span>Start dominating your niche.</span>
+               </h1>
+
 
                 {/* Subheadline */}
                 <p className="mt-8 text-sm md:text-base font-medium text-muted-foreground max-w-lg mx-auto">

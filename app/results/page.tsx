@@ -367,9 +367,6 @@ export default function ResultsPage() {
                                         if (!result) return;
                                         setIsGeneratingImage(true);
                                         try {
-                                            // Use the model for generation
-                                            // Note: The @google/genai SDK usage for image generation might require specific parameters or a different method if not standard text generation.
-                                            // Assuming standard generateContent with 'IMAGE' modality request for now.
                                             const res = await fetch("/api/generate-image", {
                                                 method: "POST",
                                                 headers: { "Content-Type": "application/json" },
