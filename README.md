@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marketio | AI Growth & UGC 🚀
 
-## Getting Started
+Marketio is an intelligent AI agent designed to revolutionize how businesses create short-form marketing content. It automatically transforms emerging social media trends into high-performing generic User Generated Content (UGC) scripts and videos, helping brands stay relevant and engaging without the manual legwork.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **Trend-to-Script Conversion**: Analyzes social media trends and converts them into actionable UGC marketing scripts (`ugc-script-generator`).
+*   **AI Video & Image Generation**:
+    *   Automated script-to-video creation (`generate-video`).
+    *   AI-powered image generation for visual assets (`generate-image`).
+*   **Workflow Automation**: Streamlines the content creation pipeline (`workflow`).
+*   **Data Export**: export your campaign data directly to spreadsheets (`export-to-sheets`).
+*   **Interactive Chat**: Refine your content strategy through an AI chat interface.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Frameworks & Core:**
+*   Next.js 16 - The React Framework for the Web.
+*   React 19 - For building user interfaces.
+*   TypeScript - For type safety.
 
-## Learn More
+**Styling & UI:**
+*   Tailwind CSS v4 - Utility-first CSS framework.
+*   Framer Motion - For React animations.
+*   GSAP - For high-performance animations.
+*   Lucide React - Beautiful & consistent icons.
+*   Next Themes - Dark mode support.
 
-To learn more about Next.js, take a look at the following resources:
+**AI & Workflow Automation:**
+*   N8N - for backend workflow automation.
+*   Google Generative AI (Gemini) - For multimodal AI capabilities.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Follow these steps to set up the project locally.
 
-## Deploy on Vercel
+### Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+*   Node.js (v18 or higher recommended)
+*   npm, yarn, pnpm, or bun
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/faizansh123/Marketio.git
+    cd uofthacks13
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Environment Setup:**
+    Create a `.env.local` file in the root directory. You will need to add your API keys for the AI services used (OpenAI, Google Gemini, etc.).
+    
+    Example `.env.local` structure:
+    ```env
+    OPENAI_API_KEY=your_openai_key_here
+    GOOGLE_API_KEY=your_google_ai_key_here
+    # Add other necessary keys based on the api/ codebase
+    ```
+
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+5.  **Open the app:**
+    Visit http://localhost:3000 in your browser.
+
+## 📂 Project Structure
+
+*   **/app**: Contains the main application routes and API endpoints.
+    *   `/api`: Backend logic for image/video generation, chat, and workflows.
+    *   `/results`: Page for displaying generated content.
+    *   `/analysis`: Trend analysis features.
+*   **/components**: Reusable UI components (Hero, Navbar, Features, etc.).
+*   **/public**: Static assets.
+
+---
+Built for UofTHacks 13.
